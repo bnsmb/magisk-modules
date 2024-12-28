@@ -1,5 +1,13 @@
 # magisk-modules
-This repository contains my Magisk Modules
+This repository contains most of my Magisk Modules
+
+A repository with the Magisk Module with **clang19** is here:
+
+[https://github.com/bnsmb/Magisk-Module-with-clang19](https://github.com/bnsmb/Magisk-Module-with-clang19)
+
+A repository with the Magisk Module with **cmake** is here:
+
+[https://github.com/bnsmb/Magisk-Module-with-cmake](https://github.com/bnsmb/Magisk-Module-with-cmake)
 
 See 
 
