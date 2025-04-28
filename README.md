@@ -5,7 +5,7 @@ A repository with the Magisk Module with **clang19** is here:
 
 [https://github.com/bnsmb/Magisk-Module-with-clang19](https://github.com/bnsmb/Magisk-Module-with-clang19)
 
-A repository with the Magisk Module with **cmake** is here:
+A repository with the Magisk Module with **cmake version 3.30.4** is here:
 
 [https://github.com/bnsmb/Magisk-Module-with-cmake](https://github.com/bnsmb/Magisk-Module-with-cmake)
 
