@@ -50,6 +50,11 @@ See
 
 for the documentation of the Magisk Modules in this repository
 
+A local copy of this page is available in this repository:  [Magisk_Modules.html](./Magisk_Modules.html)
+(Note that this copy may be outdated)
+
+
 ---
 ---
+
 
