@@ -16,6 +16,7 @@ A repository with the Magisk Module with **clang version 19** is here:
 
 (see [http://bnsmb.de/My_HowTos_for_Android.html#Documentation_for_the_Magisk_Module_with_clang19_and_the_NDK_r27b](http://bnsmb.de/My_HowTos_for_Android.html#Documentation_for_the_Magisk_Module_with_clang19_and_the_NDK_r27b) for the documentation for this Magisk Module)
 
+---
 
 A repository with a Magisk Module with **clang version 20** is here:
 
@@ -23,24 +24,13 @@ A repository with a Magisk Module with **clang version 20** is here:
 
 (see [http://bnsmb.de/My_HowTos_for_Android.html#Documentation_for_the_Magisk_Module_with_clang20_and_the_NDK_r29_beta1](http://bnsmb.de/My_HowTos_for_Android.html#Documentation_for_the_Magisk_Module_with_clang20_and_the_NDK_r29_beta1) for the documentation for this Magisk Module)
 
+---
 
 A repository with the Magisk Module with **cmake version 3.30.4** and **ninja version 1.13.0.git** is here:
 
 [https://github.com/bnsmb/Magisk-Module-with-cmake](https://github.com/bnsmb/Magisk-Module-with-cmake)
 
 (A Magisk Module with **cmake version 4.x** and **ninja version 1.13.0.git** can be found in this repository)
-
----
-
-See 
-
-http://bnsmb.de/My_HowTos_for_Android.html#Magisk_Modules
-
-and
-
-http://bnsmb.de/My_HowTos_for_Android.html#Magisk_Module_documentation
-
-for the documentation for some of the Magisk Modules in this repository
 
 ---
 
@@ -54,6 +44,12 @@ This version is quite old, but the installed Playstore is automatically updated 
 
 ---
 
+See 
 
+[http://bnsmb.de/Magisk_Modules.html](http://bnsmb.de/Magisk_Modules.html)
+
+for the documentation of the Magisk Modules in this repository
+
+---
 ---
 
