@@ -4,6 +4,10 @@ This repository contains most of my Magisk Modules.
 
 The binaries in the Magisk modules in this repository are for Android running on an **arm64** CPU.
 
+**Update 15.08.2025**
+
+Old versions of the Magisk modules are now in the sub directory [archive](Magisk_Modules/archive).
+
 ---
 
 A repository with the Magisk Module with **clang version 19** is here:
