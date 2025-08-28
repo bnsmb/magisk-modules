@@ -9,7 +9,7 @@
     <br>
     <h1 align="center"><a name="mozTocId825032" class="mozTocH1"></a>
       Magisk Modules</h1>
-    <div align="center"><b>Last Update: <a href="#History">14.08.2025</a></b><br>
+    <div align="center"><b>Last Update: <a href="#History">27.08.2025</a></b><br>
     </div>
     <br>
     <hr width="100%" size="2">
@@ -22,6 +22,7 @@
         <ol>
           <li><a href="#mozTocId421213">Contents</a></li>
           <li><a href="#mozTocId772286">Introduction</a></li>
+          <li><a href="#mozTocId880620">History</a></li>
           <li><a href="#mozTocId881543">Magisk Module documentation</a>
             <ol>
               <li><a href="#mozTocId515285">Documentation for the Magisk
@@ -49,9 +50,12 @@
                   Module with OpenVPN</a></li>
               <li><a href="#mozTocId742551">Documentation for the Magisk
                   Module with Perl 5.42</a></li>
+              <li><a href="#mozTocId987622">Documentation for the Magisk
+                  Module with unfsd3</a></li>
             </ol>
           </li>
-          <li><a href="#mozTocId904145">List of available Magisk Modules</a></li>
+          <li><a href="#mozTocId904145">List of available Magisk Modules
+            </a></li>
         </ol>
       </li>
     </ol>
@@ -81,16 +85,32 @@
     <br>
     <br>
     <hr width="100%" size="2">
-    <h2><a name="History"></a><a href="#top">History</a></h2>
+    <h2><a name="mozTocId880620" class="mozTocH2"></a><a name="History"></a><a
+        href="#top">History</a></h2>
     <br>
     <details>
       <summary><b>Changelog </b></summary>
       <br>
       <br>
       <br>
+      <b>27.08.2025</b><br>
+      <br>
+      added the <a
+        href="#Documentation_for_the_Magisk_Module_with_unfsd3">Documentation
+        for the Magisk Module with unfsd3</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <br>
+      <br>
+      <br>
+      <b>15.08.2025</b><br>
+      <br>
+      added the download link for the Magisk Module with <a
+        href="#btop">btop</a>.<br>
+      <br>
+      <br>
       <b>14.08.2025</b><br>
       <br>
       the current version of the <a href="#magisk_module_template">Magisk
+
         module template</a> is now <b>1.4.1</b>&nbsp; <br>
       added the download link to the new Magisk Module with <a
         href="#git">git 2.50.1</a>&nbsp;&nbsp; <br>
@@ -99,6 +119,7 @@
       <b>10.08.2025</b><br>
       <br>
       the current version of the <a href="#magisk_module_template">Magisk
+
 
         module template</a> is now <b>1.3.0</b>&nbsp;&nbsp; <br>
       <br>
@@ -110,7 +131,9 @@
 
 
 
+
         for the Magisk Module with the OpenVPN binary</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
       <br>
       <br>
@@ -323,6 +346,7 @@ href="https://xdaforums.com/t/module-network-tools-for-cli-sessions.4696517/"
 
 
 
+
               </samp><samp><br>
               </samp><samp>nameserver 8.8.8.8</samp><samp><br>
               </samp><samp>nameserver 1.1.1.1</samp><samp><br>
@@ -339,6 +363,7 @@ href="https://xdaforums.com/t/module-network-tools-for-cli-sessions.4696517/"
               </samp><samp>ASUS_I006D:/ $ </samp><br>
               <br>
               To change the default nameserver, edit the file <b>/data/adb/modules/network_tools/system/etc/resolv.conf</b>.&nbsp;
+
 
 
 
@@ -453,6 +478,7 @@ href="https://gitlab.isc.org/isc-projects/bind9/-/branches?state=all&amp;sort=up
             <td valign="top">the usage for the script is:<br>
               :<br>
               <samp>ASUS_I006D:/data/adb/modules/network_tools/system/bin
+
 
 
 
@@ -890,6 +916,7 @@ href="https://www.gnu.org/software/inetutils/manual/html_node/tftp-invocation.ht
 
 
 
+
       some in <b>/system/bin/net-tools</b> and <b>/system/bin/tn3270</b>.<br>
       <br>
       All executable files are either statically linked or dynamically
@@ -1022,6 +1049,7 @@ href="https://xdaforums.com/t/module-openssh-for-android.4696499/post-89966936"
 
 
 
+
       9.9p2</b> or newer!<br>
     <br>
     See the post <a
@@ -1094,7 +1122,9 @@ href="My_HowTos_for_Android.html#How_to_connect_to_Android_via_ssh_as_user_shell
 
 
 
+
       to connect to Android via ssh as user shell without root access</a>&nbsp;&nbsp;
+
 
 
 
@@ -1445,6 +1475,7 @@ href="My_HowTos_for_Android.html#How_to_connect_to_Android_via_ssh_as_user_shell
 
 
 
+
       </b> starts the sshd automatically after booting the phone if the
       file <b>/data/local/tmp/home/start_sshd</b> exists.<br>
       The sshd is started by the script with the log file <b>/data/local/tmp/var/log/sshd.log</b>
@@ -1485,6 +1516,7 @@ href="My_HowTos_for_Android.html#How_to_connect_to_Android_via_ssh_as_user_shell
 
 
 
+
         9.x</b>, the privilege separation user is "<b>nobody</b>" so
       that the <b>sshd</b> can also be started by the <b>root</b>
       user.<br>
@@ -1511,6 +1543,7 @@ href="My_HowTos_for_Android.html#How_to_connect_to_Android_via_ssh_as_user_shell
         <br>
         The binaries are compiled with the <b>Android NDK r27b</b>
         using the <b>API version 33</b>; they should therefor work on <b>Android
+
 
 
 
@@ -1602,8 +1635,10 @@ href="My_HowTos_for_Android.html#How_to_connect_to_Android_via_ssh_as_user_shell
 
 
 
+
             User binaries: /system/usr/bin<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -1688,8 +1723,10 @@ href="My_HowTos_for_Android.html#How_to_connect_to_Android_via_ssh_as_user_shell
 
 
 
+
             Configuration files: /system/etc/ssh<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -1774,8 +1811,10 @@ href="My_HowTos_for_Android.html#How_to_connect_to_Android_via_ssh_as_user_shell
 
 
 
+
             Manual pages: /system/usr/man/manX<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -1862,8 +1901,10 @@ href="My_HowTos_for_Android.html#How_to_connect_to_Android_via_ssh_as_user_shell
 
 
 
+
             sshd default user PATH: /system/bin<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -1948,8 +1989,10 @@ href="My_HowTos_for_Android.html#How_to_connect_to_Android_via_ssh_as_user_shell
 
 
 
+
             PAM support: no<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -2034,8 +2077,10 @@ href="My_HowTos_for_Android.html#How_to_connect_to_Android_via_ssh_as_user_shell
 
 
 
+
             KerberosV support: no<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -2120,8 +2165,10 @@ href="My_HowTos_for_Android.html#How_to_connect_to_Android_via_ssh_as_user_shell
 
 
 
+
             libedit support: yes<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -2215,8 +2262,10 @@ href="My_HowTos_for_Android.html#How_to_connect_to_Android_via_ssh_as_user_shell
 
 
 
+
             BSD Auth support: no<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -2301,8 +2350,10 @@ href="My_HowTos_for_Android.html#How_to_connect_to_Android_via_ssh_as_user_shell
 
 
 
+
             Privsep sandbox style: none<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -2387,9 +2438,11 @@ href="My_HowTos_for_Android.html#How_to_connect_to_Android_via_ssh_as_user_shell
 
 
 
+
             U2F/FIDO support: yes<br>
             <br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -2478,8 +2531,10 @@ href="My_HowTos_for_Android.html#How_to_connect_to_Android_via_ssh_as_user_shell
 
 
 
+
             -O2 -w -I/data/develop/android/sysroot/usr/include
             -I/data/develop/android/android-ndk-r27b/toolchains/llvm/prebuilt/linux-x86_64/sysroot//usr/include
+
 
 
 
@@ -2583,9 +2638,11 @@ href="My_HowTos_for_Android.html#How_to_connect_to_Android_via_ssh_as_user_shell
 
 
 
+
             -s -ffunction-sections -fdata-sections -Wl,--gc-sections
             -L/data/develop/android/sysroot/usr/lib
             -L/data/develop/android/android-ndk-r27b/toolchains/llvm/prebuilt/linux-x86_64/sysroot//lib
+
 
 
 
@@ -2763,6 +2820,7 @@ href="https://stackoverflow.com/questions/76376942/openssh-9-3p-fails-to-build-f
 
 
 
+
         10.0p2</b>&nbsp;&nbsp; <br>
       <br>
       <b>20.06.2025</b><br>
@@ -2796,6 +2854,7 @@ href="/files/public/Android/archive/MagiskModules/python3_3.14.v1.1.0.zip">Magis
 
 
 
+
       Module</a> is here <a
       href="https://xdaforums.com/t/module-python-3-14-for-android.4696862/"
       target="_blank" moz-do-not-send="true">https://xdaforums.com/t/module-python-3-14-for-android.4696862/</a><br>
@@ -2807,6 +2866,7 @@ href="/files/public/Android/archive/MagiskModules/python3_3.14.v1.1.0.zip">Magis
       <br>
       The Magisk Module <a moz-do-not-send="true"
         href="#python314_magisk_module">python3_3.14</a> contains <b>Python3
+
 
 
 
@@ -2977,6 +3037,7 @@ href="/files/public/Android/archive/MagiskModules/python3_3.14.v1.1.0.zip">Magis
 
 
 
+
         Installer</samp><samp><br>
       </samp><samp>---------- ----------
         --------------------------------------------- ---------</samp><samp><br>
@@ -3045,6 +3106,7 @@ href="/files/public/Android/archive/MagiskModules/python3_3.14.v1.1.0.zip">Magis
       <samp>ASUS_I006D:/ $ <b>python -c "import ssl;
           print(ssl.get_default_verify_paths()) "</b><br>
         DefaultVerifyPaths(cafile='/data/local/tmp/home/ca-certificates.crt',
+
 
 
 
@@ -3254,6 +3316,7 @@ href="/files/public/Android/archive/MagiskModules/python3_3.14.v1.1.0.zip">Magis
 
 
 
+
       </samp><samp><br>
       </samp><samp>CANNOT LINK EXECUTABLE "/system/usr/bin/python3":
         library "libpython3.14.so.1.0" not found: needed by main
@@ -3311,6 +3374,7 @@ href="/files/public/Android/archive/MagiskModules/python3_3.14.v1.1.0.zip">Magis
 
 
 
+
           --version</b></samp><samp><br>
       </samp><samp>1.7.2</samp><samp><br>
       </samp><samp>ASUS_I006D:/ $ </samp><br>
@@ -3329,6 +3393,7 @@ href="/files/public/Android/archive/MagiskModules/python3_3.14.v1.1.0.zip">Magis
       Install the Python module:<br>
       <br>
       <samp>ASUS_I006D:/ $ ASUS_I006D:/ $ </samp><samp><b>PIP_TARGET=/data/local/tmp/home/python3.14/site-packages&nbsp;
+
 
 
 
@@ -3426,10 +3491,12 @@ href="/files/public/Android/archive/MagiskModules/python3_3.14.v1.1.0.zip">Magis
 
 
 
+
         line 3, in &lt;module&gt;</samp><samp><br>
       </samp><samp>&nbsp;&nbsp;&nbsp; from .common import FileDownloader</samp><samp><br>
       </samp><samp>&nbsp; File
         "/data/local/tmp/home/python3.14/site-packages/youtube_dl/downloader/common.py",
+
 
 
 
@@ -3507,6 +3574,7 @@ href="/files/public/Android/archive/MagiskModules/python3_3.14.v1.1.0.zip">Magis
 
 
 
+
         in namespace (default)</samp><samp><br>
       </samp><samp>1|ASUS_I006D:/ $ </samp><samp><br>
       </samp><br>
@@ -3535,6 +3603,7 @@ href="/files/public/Android/archive/MagiskModules/python3_3.14.v1.1.0.zip">Magis
       <samp>ASUS_I006D:/ $ </samp><samp><b>python
           /data/local/tmp/home/python3.14/site-packages/bin/youtube-dl&nbsp;
           --version&nbsp;</b></samp><samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -3788,9 +3857,11 @@ href="https://github.com/bnsmb/libraries-and-include-files-for-Android-on-arm64-
 
 
 
+
           # </samp><samp><br>
         </samp><samp><br>
         </samp><samp>ASUS_I006D:/data/local/tmp/develop/done_clang/cpython314
+
 
 
 
@@ -3858,9 +3929,11 @@ href="https://github.com/bnsmb/libraries-and-include-files-for-Android-on-arm64-
 
 
 
+
           # </samp><samp><br>
         </samp><samp><br>
         </samp><samp>ASUS_I006D:/data/local/tmp/develop/done_clang/cpython314
+
 
 
 
@@ -3928,6 +4001,7 @@ href="https://github.com/bnsmb/libraries-and-include-files-for-Android-on-arm64-
 
 
 
+
           # </samp><samp><br>
         </samp><br>
         <br>
@@ -3947,6 +4021,7 @@ href="https://github.com/bnsmb/libraries-and-include-files-for-Android-on-arm64-
         <br>
         &nbsp; <a moz-do-not-send="true"
 href="My_HowTos_for_Android.html#How_to_install_a_Toolchain_for_clang_on_phones_without_root_access">How
+
 
 
 
@@ -4115,6 +4190,7 @@ href="https://github.com/termux/termux-packages/tree/master/packages/python"
 
 
 
+
           _tkinter</samp><samp><br>
         </samp><samp>To find the necessary bits, look in configure.ac
           and config.log.</samp><samp><br>
@@ -4169,6 +4245,7 @@ href="https://github.com/termux/termux-packages/tree/master/packages/python"
       <br>
       The Magisk Module <a moz-do-not-send="true"
         href="#python310_magisk_module">python3_3.10</a> contains <b>Python3
+
 
 
 
@@ -4364,6 +4441,7 @@ href="https://github.com/termux/termux-packages/tree/master/packages/python"
 
 
 
+
           NDK r17c</b> using the <b>API version 21</b> on a phone
         running <b>Android 14</b>.<br>
         <br>
@@ -4403,6 +4481,7 @@ href="https://github.com/termux/termux-packages/tree/master/packages/python"
         <samp>The necessary bits to build these optional modules were
           not found:<br>
           _dbm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -4558,7 +4637,9 @@ href="https://github.com/termux/termux-packages/tree/master/packages/python"
 
 
 
+
           _tkinter&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -4715,7 +4796,9 @@ href="https://github.com/termux/termux-packages/tree/master/packages/python"
 
 
 
+
           spwd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -4880,6 +4963,7 @@ href="https://github.com/termux/termux-packages/tree/master/packages/python"
 
 
 
+
           pwd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 
@@ -4958,7 +5042,9 @@ href="https://github.com/termux/termux-packages/tree/master/packages/python"
 
 
 
+
           time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -5851,10 +5937,12 @@ href="https://xdaforums.com/t/magisk-module-with-clang19-and-the-ndk-r27b.470099
 
 
 
+
           <br>
           <br>
           Using the NDK
           /system/usr/ndk/r27b&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -6004,9 +6092,11 @@ href="https://xdaforums.com/t/magisk-module-with-clang19-and-the-ndk-r27b.470099
 
 
 
+
           (environment variable SYSROOT)<br>
           Using the target root directory
           /data/local/tmp/develop/sysroot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -6353,6 +6443,7 @@ href="https://xdaforums.com/t/magisk-module-with-clang19-and-the-ndk-r27b.470099
 
 
 
+
                 </samp><samp><br>
                 </samp><samp>drwxr-xr-x 2 root root 640 1970-04-19 06:30
 /system/usr/ndk/r27b/sysroot/usr/lib/aarch64-linux-android/21</samp><samp><br>
@@ -6385,6 +6476,7 @@ href="https://xdaforums.com/t/magisk-module-with-clang19-and-the-ndk-r27b.470099
                 </samp><samp>drwxr-xr-x 2 root root 840 1970-04-19 06:30
 /system/usr/ndk/r27b/sysroot/usr/lib/aarch64-linux-android/35</samp><samp><br>
                 </samp><samp>ASUS_I006D:/data/local/tmp/develop/coreutils-9.0
+
 
 
 
@@ -6705,6 +6797,7 @@ href="https://xdaforums.com/t/magisk-module-with-clang19-and-the-ndk-r27b.470099
 
 
 
+
         -L/system/usr/ndk/r27b/sysroot/usr/lib/aarch64-linux-android
         -L/data/local/tmp/develop/sysroot/usr/lib <b>-B/system/usr/ndk/r27b/sysroot/usr/lib/aarch64-linux-android/35/</b>
         --sysroot=/system/usr/ndk/r27b/sysroot -lc</samp><samp><br>
@@ -6789,9 +6882,11 @@ href="https://xdaforums.com/t/magisk-module-with-clang19-and-the-ndk-r27b.470099
 
 
 
+
         .</samp><samp><br>
       </samp><samp>cp
         /system/usr/ndk/r27b/sysroot/usr/lib/aarch64-linux-android/<b>${API}</b>/crtend_so.o
+
 
 
 
@@ -6945,10 +7040,12 @@ href="https://xdaforums.com/t/magisk-module-with-clang19-and-the-ndk-r27b.470099
 
 
 
+
       <br>
       <br>
       see the section <a moz-do-not-send="true"
 href="#Documentation_for_the_Magisk_Module_with_clang20_and_the_NDK_r29_beta1">Documentation
+
 
 
 
@@ -7160,10 +7257,12 @@ href="https://xdaforums.com/t/module-magisk-module-with-clang20-and-the-ndk-r29-
 
 
 
+
           <br>
           <br>
           Using the NDK
           /system/usr/ndk/r29-beta1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -7223,9 +7322,11 @@ href="https://xdaforums.com/t/module-magisk-module-with-clang20-and-the-ndk-r29-
 
 
 
+
           (environment variable SYSROOT)<br>
           Using the target root directory
           /data/local/tmp/develop/sysroot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -7328,6 +7429,7 @@ href="https://xdaforums.com/t/module-magisk-module-with-clang20-and-the-ndk-r29-
 
 
 
+
           -L/data/local/tmp/develop/sysroot/usr/lib
           -B/system/usr/ndk/r29-beta1/sysroot/usr/lib/aarch64-linux-android/31/
           --sysroot=/system/usr/ndk/r29-beta1/sysroot -lc&nbsp; <br>
@@ -7377,6 +7479,7 @@ href="https://xdaforums.com/t/module-magisk-module-with-clang20-and-the-ndk-r29-
           setlibpath='export
 LD_LIBRARY_PATH=:/system/usr/ndk/r29-beta1/sysroot/usr/lib/aarch64-linux-android:/system/usr/clang20/lib'<br>
           addlib='LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/data/local/tmp/develop/sysroot/usr/lib
+
 
 
 
@@ -7782,6 +7885,7 @@ LD_LIBRARY_PATH=:/system/usr/ndk/r29-beta1/sysroot/usr/lib/aarch64-linux-android
 
 
 
+
         -L/data/local/tmp/develop/sysroot/usr/lib <b>-B/system/usr/ndk/r29-beta1/sysroot/usr/lib/aarch64-linux-android/31/</b>
         --sysroot=/system/usr/ndk/r29-beta1/sysroot -lc<br>
         ASUS_I006D:/data/local/tmp $ </samp><samp></samp><br>
@@ -7793,6 +7897,7 @@ LD_LIBRARY_PATH=:/system/usr/ndk/r29-beta1/sysroot/usr/lib/aarch64-linux-android
       <br>
       <samp>cp
         /system/usr/ndk/r29-beta1/sysroot/usr/lib/aarch64-linux-android/<b>${API}</b>/crtbegin_so.o
+
 
 
 
@@ -7942,6 +8047,7 @@ LD_LIBRARY_PATH=:/system/usr/ndk/r29-beta1/sysroot/usr/lib/aarch64-linux-android
 
 
 
+
         .</samp><br>
       <br>
       and execute <b>make</b> again.<br>
@@ -7968,12 +8074,14 @@ LD_LIBRARY_PATH=:/system/usr/ndk/r29-beta1/sysroot/usr/lib/aarch64-linux-android
 
 
 
+
       <br>
       <br>
       There is also a github repository with the files for this Magisk
       Module: <a
         href="https://github.com/bnsmb/Magisk-Module-with-clang20"
         target="_blank" moz-do-not-send="true">https://github.com/bnsmb/Magisk-Module-with-clang20</a>&nbsp;
+
 
 
 
@@ -8016,6 +8124,7 @@ href="My_HowTos_for_Android.html#How_to_install_a_Toolchain_for_clang_on_phones_
       <br>
       See the section <a moz-do-not-send="true"
 href="My_HowTos_for_Android.html#How_to_install_clang20_on_phones_without_root_access">How
+
 
 
 
@@ -8154,6 +8263,7 @@ href="My_HowTos_for_Android.html#How_to_create_a_new_dynamic_partition_in_the_pa
 
 
 
+
                     to create a new dynamic partition in the partition
                     super</a> before using this Magisk module<br>
                   <br>
@@ -8169,6 +8279,7 @@ href="My_HowTos_for_Android.html#How_to_create_a_new_dynamic_partition_in_the_pa
       the <b>super</b> partition. The advantage of this partition is
       (as already described in <a moz-do-not-send="true"
         href="#How_to_create_a_new_dynamic_partition_in_the_partition_super">this
+
 
 
 
@@ -8422,6 +8533,7 @@ href="My_HowTos_for_Android.html#How_to_create_a_new_dynamic_partition_in_the_pa
 
 
 
+
           Flags<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           0.01MB&nbsp;&nbsp;&nbsp; 0.02MB&nbsp;&nbsp;&nbsp;
@@ -8429,6 +8541,7 @@ href="My_HowTos_for_Android.html#How_to_create_a_new_dynamic_partition_in_the_pa
           &nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.02MB&nbsp;&nbsp;&nbsp;
           0.03MB&nbsp;&nbsp;&nbsp;
           0.01MB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -8578,10 +8691,12 @@ href="My_HowTos_for_Android.html#How_to_create_a_new_dynamic_partition_in_the_pa
 
 
 
+
           misc<br>
           &nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 34.6MB&nbsp;&nbsp;&nbsp;
           35.2MB&nbsp;&nbsp;&nbsp;
           0.52MB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -8728,10 +8843,12 @@ href="My_HowTos_for_Android.html#How_to_create_a_new_dynamic_partition_in_the_pa
 
 
 
+
           frp<br>
           &nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 35.7MB&nbsp;&nbsp;&nbsp;
           46.2MB&nbsp;&nbsp;&nbsp;
           10.5MB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -8888,10 +9005,12 @@ href="My_HowTos_for_Android.html#How_to_create_a_new_dynamic_partition_in_the_pa
 
 
 
+
           gpt<br>
           11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 517MB&nbsp;&nbsp;&nbsp;&nbsp;
           518MB&nbsp;&nbsp;&nbsp;&nbsp;
           1.05MB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -9044,6 +9163,7 @@ href="My_HowTos_for_Android.html#How_to_create_a_new_dynamic_partition_in_the_pa
 
 
 
+
           ftm<br>
           15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 896MB&nbsp;&nbsp;&nbsp;&nbsp;
           963MB&nbsp;&nbsp;&nbsp;&nbsp;
@@ -9119,10 +9239,12 @@ href="My_HowTos_for_Android.html#How_to_create_a_new_dynamic_partition_in_the_pa
 
 
 
+
           asusfw_a<br>
           16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 963MB&nbsp;&nbsp;&nbsp;&nbsp;
           1030MB&nbsp;&nbsp;&nbsp;
           67.1MB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -9275,10 +9397,12 @@ href="My_HowTos_for_Android.html#How_to_create_a_new_dynamic_partition_in_the_pa
 
 
 
+
           super<br>
           20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9620MB&nbsp;&nbsp;&nbsp;
           9620MB&nbsp;&nbsp;&nbsp;
           0.07MB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -9425,6 +9549,7 @@ href="My_HowTos_for_Android.html#How_to_create_a_new_dynamic_partition_in_the_pa
 
 
 
+
           vbmeta_system_b<br>
           22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9620MB&nbsp;&nbsp;&nbsp;
           9637MB&nbsp;&nbsp;&nbsp; 16.8MB&nbsp;&nbsp;&nbsp;
@@ -9432,6 +9557,7 @@ href="My_HowTos_for_Android.html#How_to_create_a_new_dynamic_partition_in_the_pa
           23&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9637MB&nbsp;&nbsp;&nbsp;
           125443MB&nbsp;
           115807MB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -9594,6 +9720,7 @@ href="My_HowTos_for_Android.html#How_to_create_a_new_dynamic_partition_in_the_pa
         &amp;&amp; \<br>
       </samp><samp>&nbsp;&nbsp; mount -o bind
         /data/adb/modules/create_dynamic_partition//system/etc/process_dynamic_partition.conf
+
 
 
 
@@ -9838,6 +9965,7 @@ href="My_HowTos_for_Android.html#How_to_create_a_new_dynamic_partition_in_the_pa
         <summary><b>/system/bin/process_dynamic_partition.sh&nbsp; -h -v</b></summary>
         <br>
         <samp>ASUS_I006D:/ # <b>/system/bin/process_dynamic_partition.sh&nbsp;
+
 
 
 
@@ -10154,9 +10282,11 @@ SUPER_PARTITION="/dev/block/by-name/${DEFAULT_SUPER_PARTITION_NAME}"</samp><samp
 
 
 
+
             fastboot delete-logical-partition persistentdata</b></samp><samp><br>
         </samp><samp>Deleting
           'persistentdata'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -10324,10 +10454,12 @@ SUPER_PARTITION="/dev/block/by-name/${DEFAULT_SUPER_PARTITION_NAME}"</samp><samp
 
 
 
+
           OKAY [&nbsp; 0.000s]</samp><samp><br>
         </samp><samp>Finished. Total time: 0.251s</samp><samp><br>
         </samp><samp>[ OmniRom 14 Dev - xtrnaw7@t15g
           /data/develop/android/ModuleSrc/create_dynamic_partition ] $ </samp>&nbsp;
+
 
 
 
@@ -10512,6 +10644,7 @@ SUPER_PARTITION="/dev/block/by-name/${DEFAULT_SUPER_PARTITION_NAME}"</samp><samp
           </samp></b><b><samp>[2024-11-08 13:32:04] The logical device
             already exists:</samp></b><b><samp><br>
           </samp></b><b><samp>persistentdata&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -11040,6 +11173,7 @@ src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABGEAAALUCAIAAAAkJbiZAAAACXBIW
 
 
 
+
                   $ find . -type f<br>
                   ./tune2fs<br>
                   ./resize2fs<br>
@@ -11060,6 +11194,7 @@ src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABGEAAALUCAIAAAAkJbiZAAAACXBIW
                   ASUS_I006D:/system/usr/create_dynamic_partition_tools
                   $ <br>
                 </samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -11155,6 +11290,7 @@ src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABGEAAALUCAIAAAAkJbiZAAAACXBIW
 
 
 
+
             </td>
             <td valign="top"><b>dmctl</b> binaries for Android </td>
             <td valign="top"><br>
@@ -11162,6 +11298,7 @@ src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABGEAAALUCAIAAAAkJbiZAAAACXBIW
                 <summary><b>dmctl binaries in the module</b></summary>
                 <br>
                 <samp>ASUS_I006D:/system/usr/create_dynamic_partition_tools/dmctl_binaries
+
 
 
 
@@ -11257,11 +11394,13 @@ src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABGEAAALUCAIAAAAkJbiZAAAACXBIW
 
 
 
+
                   $ find . -type f<br>
                   ./35/dmctl_android35<br>
                   ./34/dmctl_android34<br>
                   ./33/dmctl_android33<br>
                   ASUS_I006D:/system/usr/create_dynamic_partition_tools/dmctl_binaries
+
 
 
 
@@ -11411,6 +11550,7 @@ src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABGEAAALUCAIAAAAkJbiZAAAACXBIW
       <br>
       <samp>ASUS_I006D:/ $ ldd $( which dmctl
         )&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -11624,6 +11764,7 @@ src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABGEAAALUCAIAAAAkJbiZAAAACXBIW
 
 
 
+
           context=u:r:shell:s0</samp><samp><br>
         </samp><samp>ASUS_I006D:/data/local/tmp $ </samp><samp><br>
         </samp><samp><br>
@@ -11723,6 +11864,7 @@ src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABGEAAALUCAIAAAAkJbiZAAAACXBIW
 
 
 
+
         </samp><samp><br>
         </samp><samp>Archive:&nbsp;
           /sdcard/Documents/persistentdata/create_dynamic_partition_v1.0.0.zip</samp><samp><br>
@@ -11730,6 +11872,7 @@ src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABGEAAALUCAIAAAAkJbiZAAAACXBIW
           system/usr/create_dynamic_partition_tools/make_ext4fs OK</samp><samp><br>
         </samp><samp>&nbsp;&nbsp;&nbsp; testing:
           module.prop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -11973,6 +12116,7 @@ href="https://xdaforums.com/t/module-magisk-module-with-bash-with-working-file-p
 
 
 
+
           context=u:r:shell:s0</samp><samp><br>
         </samp><samp>shell@sake / $</samp><samp><br>
         </samp><samp><br>
@@ -12158,6 +12302,7 @@ href="https://github.com/termux/termux-packages/tree/master/packages/bash"
 
 
 
+
       </a><br>
       <br>
       <br>
@@ -12248,6 +12393,7 @@ href="https://github.com/termux/termux-packages/tree/master/packages/bash"
 
 
 
+
                     /system/bin/sh</b></samp><samp><br>
                 </samp><samp><br>
                 </samp><samp># Executing ldd "/system/bin/sh" </samp><samp><br>
@@ -12278,6 +12424,7 @@ href="https://github.com/termux/termux-packages/tree/master/packages/bash"
 
 
 
+
                     sh </b></samp><samp><br>
                 </samp><samp><br>
                 </samp><samp># Executing ldd "/data/local/tmp/sh" </samp><samp><br>
@@ -12295,6 +12442,7 @@ href="https://github.com/termux/termux-packages/tree/master/packages/bash"
                     current directory is added</b></samp><samp><b><br>
                   </b></samp><samp><br>
                 </samp><samp>ASUS_I006D:/data/local/tmp # </samp><samp><b>myldd
+
 
 
 
@@ -12579,6 +12727,7 @@ href="https://github.com/termux/termux-packages/tree/master/packages/bash"
             </td>
             <td valign="top"> see <a moz-do-not-send="true"
                 href="My_HowTos_for_Android.html#How_to_list_bind_mounts">How
+
 
 
 
@@ -12874,6 +13023,7 @@ href="https://github.com/termux/termux-packages/tree/master/packages/bash"
 
 
 
+
               <br>
               <br>
               Note that the SELinux policy changes are NOT necessary for
@@ -13083,6 +13233,7 @@ href="https://github.com/termux/termux-packages/tree/master/packages/bash"
 
 
 
+
       </samp><samp><br>
       </samp><samp>lrwxrwxrwx 1 root root 15 1970-01-12 08:44
         /system/bin/chrt.linux_utils -&gt; ../usr/bin/chrt</samp><samp><br>
@@ -13216,6 +13367,7 @@ href="https://xdaforums.com/t/module-a-magisk-module-with-an-openvpn-binary-for-
 
 
 
+
         <br>
       </samp><samp>nameserver 8.8.8.8</samp><samp><br>
       </samp><samp>nameserver 1.1.1.1</samp><samp><br>
@@ -13230,6 +13382,7 @@ href="https://xdaforums.com/t/module-a-magisk-module-with-an-openvpn-binary-for-
       <br>
       <samp>ASUS_I006D:/ $ dig www.ibm.com @192.168.1.240
         +short&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
       </samp><samp><br>
@@ -13395,13 +13548,16 @@ href="https://xdaforums.com/t/module-a-magisk-module-with-an-openvpn-binary-for-
 
 
 
+
           only process incoming connections<br>
           &nbsp;--out&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 
 
+
           only process outgoing connections<br>
           &nbsp;--both&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -13411,8 +13567,10 @@ href="https://xdaforums.com/t/module-a-magisk-module-with-an-openvpn-binary-for-
 
 
 
+
           only process TCP connections<br>
           &nbsp;--udp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -13421,10 +13579,12 @@ href="https://xdaforums.com/t/module-a-magisk-module-with-an-openvpn-binary-for-
 
 
 
+
           process TCP and UDP connections<br>
           &nbsp;<br>
           &nbsp;--verbose -v&nbsp;&nbsp;&nbsp;&nbsp; print more messages<br>
           &nbsp;-V&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -13441,9 +13601,11 @@ href="https://xdaforums.com/t/module-a-magisk-module-with-an-openvpn-binary-for-
 
 
 
+
           print the status of the requested firewall rules for
           "ip:port", "check_all" is an alias for "check --both"<br>
           &nbsp;status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -13452,6 +13614,7 @@ href="https://xdaforums.com/t/module-a-magisk-module-with-an-openvpn-binary-for-
           &nbsp;vpn_config_file&nbsp; VPN config file to retrieve the
           "ip:port" to use<br>
           &nbsp;ip:port&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -13495,6 +13658,7 @@ href="https://xdaforums.com/t/module-a-magisk-module-with-an-openvpn-binary-for-
 
 
 
+
           47.154.109.161&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tcp
           dpt:1368<br>
           Checking the result ...<br>
@@ -13529,6 +13693,7 @@ href="https://xdaforums.com/t/module-a-magisk-module-with-an-openvpn-binary-for-
         </samp><samp>7&nbsp;&nbsp;&nbsp; ACCEPT&nbsp;&nbsp;&nbsp;&nbsp;
           6&nbsp;&nbsp;&nbsp; --&nbsp;
           0.0.0.0/0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -13593,6 +13758,7 @@ href="https://xdaforums.com/t/module-a-magisk-module-with-an-openvpn-binary-for-
 
 
 
+
           85.13.142.36&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           udp dpt:443<br>
           &nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0
@@ -13601,6 +13767,7 @@ href="https://xdaforums.com/t/module-a-magisk-module-with-an-openvpn-binary-for-
           *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           85.13.142.36&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           0.0.0.0/0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -13613,6 +13780,7 @@ href="https://xdaforums.com/t/module-a-magisk-module-with-an-openvpn-binary-for-
 
 
 
+
           85.13.142.36&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           tcp dpt:443<br>
           &nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0
@@ -13621,6 +13789,7 @@ href="https://xdaforums.com/t/module-a-magisk-module-with-an-openvpn-binary-for-
           *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           85.13.142.36&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           0.0.0.0/0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -13923,7 +14092,314 @@ href="android/Documentation_for_the_script_create_overlay_mount.sh.html#Virtual_
     </details>
     <br>
     <br>
+    <hr width="100%" size="2">
+    <h3><a name="mozTocId987622" class="mozTocH3"></a><a
+        name="Documentation_for_the_Magisk_Module_with_unfsd3"></a><a
+        href="#top">Documentation for the Magisk Module with unfsd3</a></h3>
     <br>
+    URL: not yet published
+    , but the documentation for the unfsd is here: <a
+href="https://xdaforums.com/t/guide-how-to-share-directories-on-the-phone-running-android-via-nfs-as-non-root-user.4756743/"
+      target="_blank">https://xdaforums.com/t/guide-how-to-share-directories-on-the-phone-running-android-via-nfs-as-non-root-user.4756743/</a><br>
+    <br>
+    <details>
+      <summary><b>Documentation for the Magisk Module with unfsd3</b></summary>
+      <br>
+      <br>
+      The <a href="#unfsd3">Magisk Module unfsd3</a> contains a <b>userland
+        NFS3 daemon</b> for Android on <b>arm64</b> CPUs.<br>
+      <br>
+      The NFS daemon can be used to share directories on the phone via
+      NFS.<br>
+      <br>
+      The NFS daemon runs in userland and does not require a portmapper.
+      <b>Therefore, the NFS daemon can be started by a non-root user.</b>
+      <br>
+      <br>
+      Example (<b>192.168.1.148</b> is the IP of the phone in this
+      example):<br>
+      <br>
+      <samp># start the unfsd on the phone</samp><samp><br>
+      </samp><samp>#</samp><samp><br>
+      </samp><samp><br>
+      </samp><samp>ASUS_I006D:/data/local/tmp $ <b>id</b></samp><samp><br>
+      </samp><samp>uid=2000(shell) gid=2000(shell)
+        groups=2000(shell),1004(input),1007(log),1011(adb),1015(sdcard_rw),1028(sdcard_r),1078(ext_data_rw),1079(ext_obb_rw),3001(net_bt_admin),3002(net_bt),3003(inet),3006(net_bw_stats),3009(readproc),3011(uhid),3012(readtracefs)
+        context=u:r:shell:s0</samp><samp><br>
+      </samp><samp>ASUS_I006D:/data/local/tmp $ </samp><samp><br>
+      </samp><samp><br>
+      </samp><samp>ASUS_I006D:/data/local/tmp $ <b>cat $PWD/exports</b></samp><samp><br>
+      </samp><samp>/data/local/tmp/develop&nbsp; 192.168.1.164(rw)</samp><samp><br>
+      </samp><samp>ASUS_I006D:/data/local/tmp $ </samp><samp><br>
+      </samp><samp><br>
+      </samp><samp># start the unfsd in the foreground (-d) for testing</samp><samp><br>
+      </samp><samp>#</samp><samp><br>
+      </samp><samp>ASUS_I006D:/data/local/tmp $ <b>unfsd&nbsp; -d -p -e
+          $PWD/exports</b></samp><samp><br>
+      </samp><samp>UNFS3 unfsd 0.11.0 (C) 2003-2025, various authors</samp><samp><br>
+      </samp><samp>/data/local/tmp/develop: ip ::ffff:192.168.1.164/128
+        options 4</samp><br>
+      <br>
+      <br>
+      <samp># mount the NFS share on a PC running Linux</samp><samp><br>
+      </samp><samp><br>
+      </samp><samp>[xtrnaw7@t15g ~]$ <b>sudo mount -t nfs -o
+          vers=3,proto=tcp,port=2049,mountport=2049
+          192.168.1.148:/data/local/tmp/develop /mnt</b></samp><samp><br>
+      </samp><samp>[xtrnaw7@t15g ~]$ </samp><samp><br>
+        <br>
+      </samp><samp><samp>[xtrnaw7@t15g ~]$ </samp><b>df -h /mnt</b><br>
+        Filesystem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Size&nbsp; Used Avail Use% Mounted on<br>
+        192.168.1.148:/data/local/tmp/develop&nbsp; 108G&nbsp;&nbsp;
+        26G&nbsp;&nbsp; 82G&nbsp; 24% /mnt<br>
+      </samp><samp><samp>[xtrnaw7@t15g ~]$ </samp><br>
+      </samp><samp><br>
+        [xtrnaw7@t15g ~]$ <b>ls -l /mnt</b></samp><samp><br>
+      </samp><samp>total 86764</samp><samp><br>
+      </samp><samp>-rw-r--r--.&nbsp; 1 2000 2000&nbsp;&nbsp;&nbsp;&nbsp;
+        2665 Jun&nbsp; 7 10:04 android_filetest_fallback.patch</samp><samp><br>
+      </samp><samp>-rwxr-xr-x.&nbsp; 1 2000
+        2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 452 Oct 11&nbsp; 2024
+        apply_patches.template</samp><samp><br>
+      </samp><samp>-rwxr-xr-x.&nbsp; 1 2000
+        2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 941 Nov&nbsp; 1&nbsp; 2024
+        backup_gcc_env</samp><samp><br>
+      </samp><samp>drwxrwxrwx. 15 2000 2000&nbsp;&nbsp;&nbsp;&nbsp; 8192
+        Apr&nbsp; 2 15:00 bash</samp><samp><br>
+      </samp><samp>drwxrwxr-x. 13 2000 2000&nbsp;&nbsp;&nbsp;&nbsp; 8192
+        Jun&nbsp; 8 08:49 bash-5.2.37</samp><samp><br>
+      </samp><samp>-rw-r--r--.&nbsp; 1 2000 2000&nbsp;&nbsp;&nbsp;&nbsp;
+        2539 Jun&nbsp; 7 09:56 bash-5.2.37-android-access.patch</samp><samp><br>
+      </samp><samp>-rw-r--r--.&nbsp; 1 2000 2000&nbsp;&nbsp;&nbsp;&nbsp;
+        1902 Jun&nbsp; 7 09:59 bash-5.2.37-android-access.patch.v2</samp><samp><br>
+      </samp><samp>drwxrwxr-x. 15 2000 2000&nbsp;&nbsp;&nbsp; 20480
+        Jun&nbsp; 8 09:14 bash-5.2.37-sysroot</samp><samp><br>
+      </samp><samp>drwxrwxr-x. 14 2000 2000&nbsp;&nbsp;&nbsp; 20480
+        Jun&nbsp; 8 09:11 bash-5.2.37-system</samp><samp><br>
+      </samp><samp>drwxrwxr-x. 13 2000 2000&nbsp;&nbsp;&nbsp;&nbsp; 8192
+        Jun&nbsp; 8 14:35 bash-5.3-rc2</samp><samp><br>
+      </samp><samp>-rwxr-xr-x.&nbsp; 1 2000
+        2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 434 Oct&nbsp; 3&nbsp; 2024
+        clean_temp_sysroot</samp><samp><br>
+      </samp><samp>-rw-r--r--.&nbsp; 1 2000 2000&nbsp;&nbsp; 169098
+        Jul&nbsp; 8 16:32 config.h</samp><samp><br>
+      </samp><samp>-rwxrwxrwx.&nbsp; 1 2000 2000&nbsp;&nbsp;&nbsp;&nbsp;
+        1934 Oct 17&nbsp; 2024 create_patch_script.sh</samp><samp><br>
+      </samp><samp>drwxr-xr-x. 57 2000 2000&nbsp;&nbsp;&nbsp;&nbsp; 3452
+        Apr 13 16:24 done</samp><samp><br>
+      </samp><samp>drwxrwxrwx. 50 2000 2000&nbsp;&nbsp;&nbsp;&nbsp; 3452
+        Aug 15 20:39 done_clang</samp><samp><br>
+      </samp><samp>-rw-rw-rw-.&nbsp; 1 2000
+        2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 376 Jun&nbsp; 7 08:53
+        fake_access.c</samp><samp><br>
+      </samp><samp>-rwxrwxrwx.&nbsp; 1 2000 2000&nbsp;&nbsp;&nbsp;&nbsp;
+        5792 Jun&nbsp; 7 08:54 fake_access.so</samp><samp><br>
+      </samp><samp>-rw-rw-rw-.&nbsp; 1 2000
+        2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 39 Nov&nbsp; 1&nbsp;
+        2024 foo.c</samp><samp><br>
+      </samp><samp>...</samp><samp><br>
+      </samp><samp>-rw-r--r--.&nbsp; 1 2000
+        2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 37 May 29 20:06 VERSION</samp><samp><br>
+      </samp><samp>drwxr-xr-x.&nbsp; 2 2000 2000&nbsp;&nbsp;&nbsp;&nbsp;
+        3452 Jan 26&nbsp; 2025 work</samp><samp><br>
+      </samp><samp>[xtrnaw7@t15g ~]$ </samp><br>
+      <br>
+      <br>
+      Because there is no portmapper running on the phone, the mount
+      parameter for the protocol, version, and ports to use (<samp><b>-o
+          vers=3,proto=tcp,port=2049,mountport=2049) </b></samp>are
+      mandatory for the mount command to mount the NFS share, e.g:<br>
+      <br>
+      <samp>sudo mount -t nfs </samp><samp><b>-o
+          vers=3,proto=tcp,port=2049,mountport=2049</b></samp><samp>&nbsp;
+        192.168.1.148:/data/local/tmp/develop /mnt</samp><br>
+      <br>
+      <br>
+      The NFS shares to be created by the <b>unfsd</b> are defined in
+      the <b>exports</b> file.<br>
+      The default <b>exports</b> file used by the <b>unfsd</b> is <b>/system/etc/exports</b>;
+      use the parameter <b>-e</b> to select another exports file.<br>
+      <br>
+      <br>
+      Be aware of the restrictions of this nfs daemon (see also the
+      readme in the git repository: <a
+        href="https://github.com/unfs3/unfs3" target="_blank">https://github.com/unfs3/unfs3</a>):<br>
+      <br>
+      <cite>It is not possible to export to netgroups or wildcard
+        hostnames via /etc/exports, all other addressing methods should
+        work. The following options are recognized in the exports file:
+        ro, rw, root_squash, all_squash, no_root_squash, no_all_squash.
+        If other options are present, they are ignored.</cite><cite><br>
+      </cite><br>
+      <br>
+      Because of these restrictions an entry like this<br>
+      <br>
+      <samp>/data/local/tmp&nbsp;&nbsp;&nbsp; *(rw,no_root_squash)</samp><br>
+      <br>
+      in the <b>exports</b> file is not supported by the nfs daemon.
+      All entries in the <b>exports</b> file must use IP addresses,
+      example<br>
+      <br>
+      <samp>/data/local/tmp&nbsp;&nbsp;&nbsp;
+        192.168.1.64(rw,no_root_squash)</samp><br>
+      <br>
+      <br>
+      To add another share to the <b>exports</b> file of the running
+      nfs daemon, edit the <b>exports</b> file, and send the <b>HUP</b>
+      signal to the daemon:<br>
+      <br>
+      <samp>pkill -HUP unfsd</samp><br>
+      <br>
+      <br>
+      Or start another instance of the <b>nfsd</b> with a different
+      port number, e.g:<br>
+      <br>
+      <samp>unfsd&nbsp; -d -p -e $PWD/exports -n 2050 -m 2050</samp><br>
+      <br>
+      (The default port used by the nfs daemon for both services is the
+      standard port for NFSv3: <b>2049</b>)<br>
+      <br>
+      <br>
+      The usage for the unfsd is <br>
+      <br>
+      <details>
+        <summary><b>unfsd -h</b></summary>
+        <br>
+        <samp>
+          ASUS_I006D:/ $ </samp><samp><b>unfsd -h</b></samp><samp><br>
+        </samp><samp>UNFS3 unfsd 0.11.0 (C) 2003-2025, various authors</samp><samp><br>
+        </samp><samp>Usage: unfsd [options]</samp><samp><br>
+        </samp><samp>&nbsp;&nbsp;&nbsp;
+          -h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          display this short option summary</samp><samp><br>
+        </samp><samp>&nbsp;&nbsp;&nbsp;
+          -u&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; use
+          unprivileged port for services</samp><samp><br>
+        </samp><samp>&nbsp;&nbsp;&nbsp;
+          -d&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; do
+          not detach from terminal</samp><samp><br>
+        </samp><samp>&nbsp;&nbsp;&nbsp; -e &lt;file&gt;&nbsp;&nbsp; file
+          to use instead of /etc/exports</samp><samp><br>
+        </samp><samp>&nbsp;&nbsp;&nbsp; -i &lt;file&gt;&nbsp;&nbsp;
+          write daemon pid to given file</samp><samp><br>
+        </samp><samp>&nbsp;&nbsp;&nbsp; -n &lt;port&gt;&nbsp;&nbsp; port
+          to use for NFS service</samp><samp><br>
+        </samp><samp>&nbsp;&nbsp;&nbsp; -m &lt;port&gt;&nbsp;&nbsp; port
+          to use for MOUNT service</samp><samp><br>
+        </samp><samp>&nbsp;&nbsp;&nbsp;
+          -t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TCP
+          only, do not listen on UDP ports</samp><samp><br>
+        </samp><samp>&nbsp;&nbsp;&nbsp;
+          -p&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; do
+          not register with portmap/rpcbind</samp><samp><br>
+        </samp><samp>&nbsp;&nbsp;&nbsp;
+          -s&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          single user mode</samp><samp><br>
+        </samp><samp>&nbsp;&nbsp;&nbsp;
+          -b&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          enable brute force file searching</samp><samp><br>
+        </samp><samp>&nbsp;&nbsp;&nbsp; -l &lt;addr&gt;&nbsp;&nbsp; bind
+          to interface with specified address</samp><samp><br>
+        </samp><samp>&nbsp;&nbsp;&nbsp;
+          -r&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          report unreadable executables as readable</samp><samp><br>
+        </samp><samp>&nbsp;&nbsp;&nbsp;
+          -3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          truncate fileid and cookie to 32 bits</samp><samp><br>
+        </samp><samp>&nbsp;&nbsp;&nbsp;
+          -T&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; test
+          exports file and exit</samp><samp><br>
+        </samp><samp>ASUS_I006D:/ $ </samp><br>
+        <br>
+        <br>
+      </details>
+      <br>
+      <br>
+      <br>
+      The <b>serivce.sh</b> script from the Magisk Module automatically
+      starts the <b>unfsd</b> if the file <b>/system/etc/exports</b>
+      exists. The <b>unfsd</b> is started by the user who owns the file
+      <b>/system/etc/exports</b>. It is recommended that the user <b>shell</b>
+      owns that file.<br>
+      <br>
+      The file <b>/system/etc/exports</b> is retained when updating the
+      Magisk Module. There is no default for that file in the Magisk
+      module.<br>
+      <br>
+      <br>
+      <br>
+      <b>Notes</b><br>
+      <br>
+      Android does not contain a portmapper. But if there is a
+      portmapper running on the phone, the <b>unfsd</b> can use it. In
+      this case, the file <b>/etc/netconfig</b> must contain these
+      entries:<br>
+      <samp><br>
+      </samp><samp>udp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        tpi_clts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v&nbsp;&nbsp;&nbsp;&nbsp;
+        inet&nbsp;&nbsp;&nbsp;&nbsp; udp&nbsp;&nbsp;&nbsp;&nbsp;
+        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -</samp><samp><br>
+      </samp><samp>tcp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        tpi_cots_ord&nbsp; v&nbsp;&nbsp;&nbsp;&nbsp;
+        inet&nbsp;&nbsp;&nbsp;&nbsp; tcp&nbsp;&nbsp;&nbsp;&nbsp;
+        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -</samp><samp><br>
+      </samp><br>
+      <br>
+      The Linux command <b>showmount</b> can not list the shares on the
+      phone due to the lack of a portmapper. <br>
+      <br>
+      <br>
+      The <b>unfsd</b> binary only requires the standard Android
+      libraries:<br>
+      <br>
+      <samp>ASUS_I006D:/ $ <b>ldd&nbsp; /system/bin/unfsd</b></samp><samp><br>
+      </samp><samp>&nbsp;&nbsp;&nbsp; linux-vdso.so.1 =&gt; [vdso]
+        (0x769f25a000)</samp><samp><br>
+      </samp><samp>&nbsp;&nbsp;&nbsp; libc.so =&gt;
+        /apex/com.android.runtime/lib64/bionic/libc.so (0x769c4c4000)</samp><samp><br>
+      </samp><samp>&nbsp;&nbsp;&nbsp; libdl.so =&gt;
+        /apex/com.android.runtime/lib64/bionic/libdl.so (0x769c48c000)</samp><samp><br>
+      </samp><samp>ASUS_I006D:/ $ </samp><br>
+      <br>
+      <br>
+      To use the NFS daemon from the Magisk module on phones without
+      Magisk, simply extract the <b>unfsd</b> binary from the ZIP file
+      with the Magisk module and copy it to the phone:<br>
+      <br>
+      <samp>unzip -p unfsd3_*.zip&nbsp; system/bin/unfsd &gt;unfsd
+        &amp;&amp; chmod 755 unfsd &amp;&amp; ls -l unfsd</samp><br>
+      <br>
+      <br>
+      or download the <b>unfsd</b> binary from here: <a
+        href="http://bnsmb.de/files/public/Android/binaries_for_arm64/unfsd">http://bnsmb.de/files/public/Android/binaries_for_arm64/unfsd</a><br>
+      <br>
+      <br>
+      The source code for the <b>unfsd</b> is available in this github
+      repository:&nbsp; <a href="https://github.com/unfs3/unfs3"
+        target="_blank">https://github.com/unfs3/unfs3</a><br>
+      To compile <b>unfsd</b>, the <b>libtirpc</b> library from here <a
+href="https://www.linuxfromscratch.org/blfs/view/svn/basicnet/libtirpc.html"
+        target="_blank">https://www.linuxfromscratch.org/blfs/view/svn/basicnet/libtirpc.html</a>
+      is required.<br>
+      <br>
+      <br>
+      <br>
+    </details>
+    <br>
+    <br>
+    <details>
+      <summary><b>History of this entry</b></summary>
+      <br>
+      <br>
+      <b>27.08.2025</b><br>
+      <br>
+      initial release<br>
+      <br>
+      <br>
+    </details>
+    <br>
+    &nbsp;<br>
     <hr width="100%" size="2">
     <h2><a name="mozTocId904145" class="mozTocH2"></a><a name="Links"></a><a
         moz-do-not-send="true" href="#top" style="">List of available
@@ -14018,6 +14494,144 @@ href="https://xdaforums.com/t/module-magisk-modules-with-unix-binaries-compiled-
             </td>
           </tr>
           <tr>
+            <td valign="top"><a name="btop"></a><a
+                href="/files/public/Android/btop_v1.4.4-v1.0.0.zip">btop_v1.4.4-v1.0.0.zip</a>&nbsp;
+
+              <br>
+            </td>
+            <td valign="top"><a
+                href="https://github.com/topjohnwu/Magisk"
+                target="_blank" moz-do-not-send="true">Magisk</a> Module
+              with <b>btop 1.4.4</b> for <b>arm64</b> CPUs</td>
+            <td valign="top"><br>
+              <details>
+                <summary><b>Details</b></summary>
+                <br>
+                This Magisk module contains <a
+                  href="https://github.com/aristocratos/btop"
+                  target="_blank">btop++</a> for <b>arm64</b> CPUs<br>
+                <br>
+                <samp>ASUS_I006D:/ # <b>btop -V</b></samp><samp><br>
+                </samp><samp>btop version: 1.4.4</samp><samp><br>
+                </samp><samp>ASUS_I006D:/ # </samp><br>
+                <br>
+                Note that in the rest of this document the term "<b>btop</b>"
+                is used instead of "<b>btop++</b>".<br>
+                <br>
+                <br>
+                The <b>btop</b> executable is installed in <b>/system/bin/usr</b>;
+                in <b>/system/bin</b> is a wrapper script for <b>btop</b>.
+                <br>
+                <br>
+                When the wrapper script is executed by a non-root user,
+                it executes the <b>btop</b> executable with the
+                following command <br>
+                <br>
+                <samp>su - --preserve-environment -c
+                  /system/usr/bin/btop $*</samp><br>
+                <br>
+                <br>
+                The <b>btop</b> executable only needs the standard
+                Android libraries:<br>
+                <br>
+                <samp>ASUS_I006D:/ $ ldd /system/usr/bin/btop</samp><samp><br>
+                </samp><samp>&nbsp;&nbsp;&nbsp; linux-vdso.so.1 =&gt;
+                  [vdso] (0x7263c86000)</samp><samp><br>
+                </samp><samp>&nbsp;&nbsp;&nbsp; libc.so =&gt;
+                  /apex/com.android.runtime/lib64/bionic/libc.so
+                  (0x72610e9000)</samp><samp><br>
+                </samp><samp>&nbsp;&nbsp;&nbsp; libm.so =&gt;
+                  /apex/com.android.runtime/lib64/bionic/libm.so
+                  (0x7262a43000)</samp><samp><br>
+                </samp><samp>&nbsp;&nbsp;&nbsp; libdl.so =&gt;
+                  /apex/com.android.runtime/lib64/bionic/libdl.so
+                  (0x72610b8000)</samp><samp><br>
+                </samp><samp>ASUS_I006D:/ $ </samp><br>
+                <br>
+                <br>
+                The <b>btop</b> executable searches the config
+                directory <b>.config/btop</b> in these directories in
+                this order:<br>
+                <br>
+                <ol>
+                  <li>the contents of the environment variable <b>XDG_CONFIG_HOME</b>
+                    if not empty</li>
+                  <li>the contents of the environment variable <b>HOME</b>
+                    if not empty and NOT "/"</li>
+                  <li>the directory <b>/data/local/tmp/sysroot/home/shell</b><br>
+                  </li>
+                </ol>
+                <br>
+                To change the directory to be used for the <b>btop</b>
+                config files, set one of the environment variables
+                mentioned above before executing btop.<br>
+                <br>
+                <br>
+                The <b>btop</b> executable searches the following
+                directories for system themes in this order:<br>
+                <br>
+                <ol>
+                  <li><b>../share/btop/themes</b> (this path is relative
+                    to the <b>btop</b> executable)</li>
+                  <li><b>/system/usr/share/btop/themes</b></li>
+                  <li><b>/data/local/tmp/sysroot/usr/share/btop/themes</b></li>
+                </ol>
+                <br>
+                A sample config file for <b>btop</b> can be found here:<br>
+                <br>
+                <b>/system/usr/share/btop/btop.conf</b><br>
+                <br>
+                <br>
+                <b>Notes</b><br>
+                <br>
+                The default value for <b>"use_fstab"</b> in the <b>btop</b>
+                binary from this Magisk module is false<br>
+                <br>
+                <br>
+                Mouse support does not work reliable for this <b>btop</b>
+                binary - it's recommended to not use it.<br>
+                If you really want to use the mouse, execute <b>btop</b>
+                in an ssh session to the phone.<br>
+                <br>
+                <br>
+                The source code used to create the <b>btop</b> binary
+                is copied from the repository<br>
+                <br>
+                <a href="https://github.com/aristocratos/btop"
+                  target="_blank">https://github.com/aristocratos/btop</a><br>
+                <br>
+                at <b>15.08.2025</b>.<br>
+                <br>
+                <br>
+                The <b>btop</b> binary was compiled using the <b>clang19
+
+                  toolchain</b> on the phone - see<br>
+                <br>
+                <a
+href="My_HowTos_for_Android.html#How_to_install_a_Toolchain_for_clang_on_phones_without_root_access">My_HowTos_for_Android.html#How_to_install_a_Toolchain_for_clang_on_phones_without_root_access</a><br>
+                <br>
+                for the documentation for the <b>clang19 toolchain</b>.<br>
+                <br>
+                <br>
+                The patches used to patch the source code for <b>btop</b>
+                are in the directory <b>./patches</b> in this Magisk
+                module<br>
+                <br>
+                <br>
+                The <b>btop</b> binary from the archive<br>
+                <br>
+                <a
+href="https://github.com/aristocratos/btop/releases/download/v1.4.4/btop-aarch64-linux-musl.tbz"
+                  target="_blank">https://github.com/aristocratos/btop/releases/download/v1.4.4/btop-aarch64-linux-musl.tbz</a><br>
+                <br>
+                also works in Android<br>
+                <br>
+              </details>
+              <br>
+              <br>
+            </td>
+          </tr>
+          <tr>
             <td valign="top"><a moz-do-not-send="true"
                 href="/files/public/Android/ckermit_10.0_Beta10.zip">ckermit_10.0_Beta10.zip</a><br>
             </td>
@@ -14051,6 +14665,7 @@ href="https://xdaforums.com/t/module-magisk-modules-with-unix-binaries-compiled-
                 href="https://github.com/topjohnwu/Magisk"
                 target="_blank" moz-do-not-send="true">Magisk</a> Module
               with the <b>Android SDK tools </b>for devices with an <b>aarch64
+
 
 
 
@@ -14170,6 +14785,7 @@ href="https://xdaforums.com/t/module-magisk-modules-with-unix-binaries-compiled-
               <br>
               <br>
               There are also these binaries For <b>arm64</b> and <b>arm
+
 
 
 
@@ -14445,10 +15061,12 @@ href="https://xdaforums.com/t/module-magisk-modules-with-unix-binaries-compiled-
 
 
 
+
                   +file_in_path&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   +mouse_urxvt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   -tag_any_white<br>
                   +arabic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -14645,10 +15263,12 @@ href="https://xdaforums.com/t/module-magisk-modules-with-unix-binaries-compiled-
 
 
 
+
                   +multi_byte&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   +termguicolors<br>
                   +autochdir&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 +folding&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -14846,9 +15466,11 @@ href="https://xdaforums.com/t/module-magisk-modules-with-unix-binaries-compiled-
 
 
 
+
                   +terminfo<br>
                   -balloon_eval&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   +fork()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -15045,8 +15667,10 @@ href="https://xdaforums.com/t/module-magisk-modules-with-unix-binaries-compiled-
 
 
 
+
                   +textobjects<br>
                   -browse&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -15244,11 +15868,13 @@ href="https://xdaforums.com/t/module-magisk-modules-with-unix-binaries-compiled-
 
 
 
+
                   +path_extra&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   +timers<br>
                   +byte_offset&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   +insert_expand&nbsp;&nbsp;&nbsp;&nbsp;
                   -perl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -15444,10 +16070,12 @@ href="https://xdaforums.com/t/module-magisk-modules-with-unix-binaries-compiled-
 
 
 
+
                   +persistent_undo&nbsp;&nbsp; -toolbar<br>
                   +cindent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 +job&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 +popupwin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -15648,10 +16276,12 @@ href="https://xdaforums.com/t/module-magisk-modules-with-unix-binaries-compiled-
 
 
 
+
                   +vertsplit<br>
                   +cmdline_compl&nbsp;&nbsp;&nbsp;&nbsp;
                   +lambda&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 +profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -15848,10 +16478,12 @@ href="https://xdaforums.com/t/module-magisk-modules-with-unix-binaries-compiled-
 
 
 
+
                   +viminfo<br>
                   +cmdline_info&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   +libcall&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   -python3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -16048,6 +16680,7 @@ href="https://xdaforums.com/t/module-magisk-modules-with-unix-binaries-compiled-
 
 
 
+
                   +visual<br>
                   +conceal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -16146,8 +16779,10 @@ href="https://xdaforums.com/t/module-magisk-modules-with-unix-binaries-compiled-
 
 
 
+
                   +lispindent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   +reltime&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -16344,6 +16979,7 @@ href="https://xdaforums.com/t/module-magisk-modules-with-unix-binaries-compiled-
 
 
 
+
                   +vreplace<br>
                   +cscope&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 +localmap&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -16444,9 +17080,11 @@ href="https://xdaforums.com/t/module-magisk-modules-with-unix-binaries-compiled-
 
 
 
+
                   +wildignore<br>
                   +cursorbind&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   -lua&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -16644,9 +17282,11 @@ href="https://xdaforums.com/t/module-magisk-modules-with-unix-binaries-compiled-
 
 
 
+
                   +windows<br>
                   +dialog_con&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   +mksession&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -16842,8 +17482,10 @@ href="https://xdaforums.com/t/module-magisk-modules-with-unix-binaries-compiled-
 
 
 
+
                   +modify_fname&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   -sodium&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -17040,6 +17682,7 @@ href="https://xdaforums.com/t/module-magisk-modules-with-unix-binaries-compiled-
 
 
 
+
                   +xattr<br>
                   -dnd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -17138,8 +17781,10 @@ href="https://xdaforums.com/t/module-magisk-modules-with-unix-binaries-compiled-
 
 
 
+
                   -mouseshape&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   +spell&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -17335,9 +17980,11 @@ href="https://xdaforums.com/t/module-magisk-modules-with-unix-binaries-compiled-
 
 
 
+
                   +startuptime&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -xim<br>
                   +emacs_tags&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   -mouse_gpm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -17533,9 +18180,11 @@ href="https://xdaforums.com/t/module-magisk-modules-with-unix-binaries-compiled-
 
 
 
+
                   -mouse_jsbterm&nbsp;&nbsp;&nbsp;&nbsp;
                   -sun_workshop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -xsmp<br>
                   +ex_extra&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -17730,12 +18379,14 @@ href="https://xdaforums.com/t/module-magisk-modules-with-unix-binaries-compiled-
 
 
 
+
                   -xterm_clipboard<br>
                   +extra_search&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   +mouse_sgr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   +tag_binary&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   -xterm_save<br>
                   -farsi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -17946,12 +18597,14 @@ href="https://xdaforums.com/t/module-magisk-modules-with-unix-binaries-compiled-
 
 
 
+
                   -I. -Iproto -DHAVE_CONFIG_H
                   --sysroot=/data/develop/android/android-ndk-r14b/platforms/android-21/arch-arm64
 
 -O2
 
 -fPIE
+
 
 
 
@@ -18152,12 +18805,14 @@ href="https://xdaforums.com/t/module-magisk-modules-with-unix-binaries-compiled-
 
 
 
+
                   -fPIC -I/data/develop/android/sysroot/usr/include
                   -I/data/develop/android/android-ndk-r14b/platforms/android-21/arch-arm64/usr/include
 
 -D_REENTRANT
 
 -U_FORTIFY_SOURCE
+
 
 
 
@@ -18360,12 +19015,14 @@ href="https://xdaforums.com/t/module-magisk-modules-with-unix-binaries-compiled-
 
 
 
+
                   -L/data/develop/android/sysroot/usr/lib
                   -L/data/develop/android/android-ndk-r14b/platforms/android-21/arch-arm64/usr/lib
 
 -Wl,--as-needed
 
 -o
+
 
 
 
@@ -18584,6 +19241,7 @@ Android
 
 
 
+
                 using gcc or clang</a> for instructions to compile vim<br>
               <br>
               <samp> </samp> </td>
@@ -18606,6 +19264,7 @@ Android
               <br>
               see <a
                 href="#Documentation_for_the_Magisk_Module_with_Debug_tools">Doumentation
+
 
 
 
@@ -18676,6 +19335,7 @@ programs
 for
 
 Android
+
 
 
 
@@ -18936,6 +19596,11 @@ Android
                 target="_blank" moz-do-not-send="true">Magisk</a> module
               with some of my scripts for Android</td>
             <td valign="top"><br>
+              see <a
+                href="My_HowTos_for_Android.html#Files_mentioned_in_the_HowTos">My
+                HowTos for Android</a> for the links to the
+              documentation for these scripts<br>
+              <br>
               <details>
                 <summary><b>Files in the module:</b></summary>
                 <br>
@@ -19119,6 +19784,7 @@ Android
 
 
 
+
                 to compile Perl for Android</a> for instructions to
               compile perl<br>
               <br>
@@ -19128,6 +19794,7 @@ Android
             <td valign="top"><a name="perl540_magisk_module"></a><a
                 moz-do-not-send="true"
                 href="/files/public/Android/perl540_5.40.0.zip">perl540_5.40.0.zip</a>&nbsp;
+
 
 
 
@@ -19383,6 +20050,7 @@ Android
 
 
 
+
                 using gcc or clang</a> for instructions to compile perl<br>
               <br>
               These binaries are compiled using the Android SDK; the
@@ -19392,6 +20060,7 @@ Android
                 <summary><b>ldd /data/local/tmp/perl540/bin/perl</b></summary>
                 <br>
                 <samp>ASUS_I006D:/ $ <b>/data/local/tmp/perl540/bin/perl
+
 
 
 
@@ -19525,6 +20194,7 @@ Android
             <td valign="top"><br>
               see <a
                 href="#Documentation_for_the_Magisk_Module_with_Perl_5.42">Documentation
+
 
 
 
@@ -19727,6 +20397,7 @@ href="https://xdaforums.com/t/magisk-twrp-arm32-64-a8-universal-read-only-to-rea
           <tr>
             <td valign="top"><a moz-do-not-send="true"
                 href="/files/public/Android/e2fsprogs_1.47.2-v1.2.0.zip">e2fsprogs_1.47.2-v1.2.0.zip</a>&nbsp;
+
 
 
 
@@ -20312,6 +20983,7 @@ href="/files/public/Android/archive/MagiskModules/python3_3.14.v1.1.0.zip">pytho
 
 
 
+
                   # <br>
                   <br>
                   ...plus the necessary data files for cmake.<br>
@@ -20323,6 +20995,7 @@ href="/files/public/Android/archive/MagiskModules/python3_3.14.v1.1.0.zip">pytho
                 <br>
                 The file <b>./system/usr/include/android/api-level.h</b>
                 in the Magisk Module is from the <b>Android NDK r27b</b>&nbsp;
+
 
 
 
@@ -20516,6 +21189,7 @@ href="/files/public/Android/archive/MagiskModules/python3_3.14.v1.1.0.zip">pytho
 
 
 
+
                 <br>
                 <br>
                 To use a different <b>api-level.h</b>, set the
@@ -20563,6 +21237,7 @@ href="/files/public/Android/archive/MagiskModules/python3_3.14.v1.1.0.zip">pytho
                 <summary><b>Files in the module</b></summary>
                 <br>
                 <samp>ASUS_I006D:/data/adb/modules/autoconf_tools/system/bin
+
 
 
 
@@ -20688,7 +21363,7 @@ href="/files/public/Android/archive/MagiskModules/python3_3.14.v1.1.0.zip">pytho
           </tr>
           <tr>
             <td valign="top"><a moz-do-not-send="true"
-                href="/files/public/Android/bison_flex_1.1.0.zip">bison_flex_1.1.0.zip</a><br>
+                href="/files/public/Android/bison_flex_1.2.0.zip">bison_flex_1.2.0.zip</a><br>
             </td>
             <td valign="top">This <a
                 href="https://github.com/topjohnwu/Magisk"
@@ -20958,6 +21633,7 @@ href="https://github.com/Zackptg5/Cross-Compiled-Binaries-Android/tree/master"
               <br>
               see also the <samp></samp><a moz-do-not-send="true"
                 href="#Documentation_for_the_Magisk_Module_with_bash">Documentation
+
 
 
 
@@ -21277,6 +21953,7 @@ href="https://github.com/Zackptg5/Cross-Compiled-Binaries-Android/tree/master"
 
 
 
+
                 Module with the Debug Tools</a>.<br>
               <br>
             </td>
@@ -21397,12 +22074,14 @@ href="https://github.com/Zackptg5/Cross-Compiled-Binaries-Android/tree/master"
 
 
 
+
                 NDK r27b</b> to compile binaries and libraries for <b>arm64</b>
               CPUs<br>
               <br>
             </td>
             <td valign="top">see the <a moz-do-not-send="true"
 href="#Documentation_for_the_Magisk_Module_with_clang19_and_the_NDK_r27b">Documentation
+
 
 
 
@@ -21529,6 +22208,7 @@ href="#Documentation_for_the_Magisk_Module_with_clang19_and_the_NDK_r27b">Docume
 
 
 
+
                 NDK r29 beta1</b> to compile binaries and libraries for
               <b>arm64</b> CPUs<br>
               <br>
@@ -21563,7 +22243,9 @@ href="#Documentation_for_the_Magisk_Module_with_clang20_and_the_NDK_r29_beta1">D
 
 
 
+
                 for the Magisk Module with clang20 and the NDK r29 beta1</a>&nbsp;&nbsp;
+
 
 
 
@@ -21697,6 +22379,7 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
 
 
 
+
                 8.13.0-v1.0.0.zip</a><br>
             </td>
             <td valign="top">This <a
@@ -21711,6 +22394,7 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
                 <summary><b>Details</b></summary>
                 <br>
                 <samp>ASUS_I006D:/ $ </samp><samp><b>/system/usr/bin/curl
+
 
 
 
@@ -21849,6 +22533,7 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
 
 
 
+
                     -fPIE -fPIC -isystem
                     /data/develop/android/sysroot/usr/include
                     -Wno-implicit-function-declaration
@@ -21859,6 +22544,7 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
                     CPPFLAGS:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     --sysroot
                     /data/develop/android/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/sysroot
+
 
 
 
@@ -21906,6 +22592,7 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
                     LDFLAGS:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     --sysroot
                     /data/develop/android/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/sysroot
+
 
 
 
@@ -21997,9 +22684,11 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
 
 
 
+
                     enabled (OpenSSL v3+)</samp><samp><br>
                   </samp><samp>&nbsp;
                     SSH:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -22063,12 +22752,14 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
 
 
 
+
                     enabled</samp><samp><br>
                   </samp><samp>&nbsp;
                     brotli:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     enabled (libbrotlidec)</samp><samp><br>
                   </samp><samp>&nbsp;
                     zstd:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -22145,11 +22836,13 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
 
 
 
+
                     enabled</samp><samp><br>
                   </samp><samp>&nbsp; Unix
                     sockets:&nbsp;&nbsp;&nbsp;&nbsp; enabled</samp><samp><br>
                   </samp><samp>&nbsp;
                     IDN:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -22226,6 +22919,7 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
 
 
 
+
                     no&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (--enable-sspi)</samp><samp><br>
                   </samp><samp>&nbsp; ca cert bundle:&nbsp;&nbsp;
                     /system/etc/security/ca-certificates.crt</samp><samp><br>
@@ -22238,6 +22932,7 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
                     fallback:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; yes</samp><samp><br>
                   </samp><samp>&nbsp;
                     LDAP:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -22308,6 +23003,7 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
 
 
 
+
                     enabled</samp><samp><br>
                   </samp><samp>&nbsp;
                     RTMP:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -22341,9 +23037,11 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
 
 
 
+
                     no&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (--with-librtmp)</samp><samp><br>
                   </samp><samp>&nbsp;
                     PSL:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -22413,6 +23111,7 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
 
 
 
+
                     enabled (--disable-hsts)</samp><samp><br>
                   </samp><samp>&nbsp;
                     HTTP1:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -22425,6 +23124,7 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
                     enabled (openssl + nghttp3)</samp><samp><br>
                   </samp><samp>&nbsp;
                     ECH:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -22640,6 +23340,7 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
 
 
 
+
                     2.1.0<br>
                     &nbsp; Host
                     OS:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -22651,6 +23352,7 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
 /data/develop/android/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android28-clang<br>
                     &nbsp;
                     CFlags:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -22801,8 +23503,10 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
 
 
 
+
                     --sysroot
                     /data/develop/android/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/sysroot&nbsp;
+
 
 
 
@@ -22951,8 +23655,10 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
 
 
 
+
                     --sysroot
                     /data/develop/android/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/sysroot
+
 
 
 
@@ -23093,11 +23799,13 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
 
 
 
+
                     -s -pie
                     -L/data/develop/android/sysroot/usr/lib&nbsp; -s
                     -pie -L/data/develop/android/sysroot/usr/lib&nbsp; <br>
                     &nbsp;
                     Libs:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -23280,6 +23988,7 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
 
 
 
+
                     Valgrind testing not enabled<br>
                     &nbsp;
                     Assertions:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -23291,6 +24000,7 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
                     no, <br>
                     &nbsp;
                     GPGME:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 
 
@@ -23507,6 +24217,7 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
 
 
 
+
               <br>
             </td>
             <td valign="top">This <a
@@ -23631,6 +24342,7 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
 
 
 
+
                     --version</b></samp><samp><br>
                 </samp><samp>GNU gdb (GDB) 16.1</samp><samp><br>
                 </samp><samp>Copyright (C) 2024 Free Software
@@ -23642,6 +24354,7 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
                 </samp><samp>There is NO WARRANTY, to the extent
                   permitted by law.</samp><samp><br>
                 </samp><samp>raspberry-dev:/data/local/tmp/develop/gdb-16.1
+
 
 
 
@@ -23778,9 +24491,11 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
 
 
 
+
                   (relocatable)</samp><samp><br>
                 </samp><samp>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                   --with-jit-reader-dir=/data/local/tmp/sysroot/usr/lib/gdb
+
 
 
 
@@ -23861,6 +24576,7 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
                   --without-system-readline</samp><samp><br>
                 </samp><samp>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                   --with-separate-debug-dir=/data/local/tmp/sysroot/usr/lib/debug
+
 
 
 
@@ -24030,6 +24746,7 @@ href="#Documentation_for_the_Magisk_Module_with_tools_to_use_an_additional_dynam
                 standard libraries and the C++ runtime library only:<br>
                 <samp><br>
                   ASUS_I006D:/ $ <b>LD_LIBRARY_PATH=/system/usr/gdb16_libs/
+
 
 
 
@@ -24261,12 +24978,14 @@ href="thttps://github.com/termux/termux-packages/tree/master/packages/gdb"
 
 
 
+
                 <br>
                 <br>
                 This is configured in the <b>man</b> wrapper script:<br>
                 <br>
                 <samp>ASUS_I006D:/ $ cat /system/bin/man</samp><samp><br>
                 </samp><samp>MANPATH=${MANPATH}:/data/local/tmp/sysroot/usr/share/man:/system/usr/share/man
+
 
 
 
@@ -24550,6 +25269,7 @@ href="thttps://github.com/termux/termux-packages/tree/master/packages/gdb"
 
 
 
+
                   ELF shared object, 64-bit LSB arm64, dynamic
                   (/system/bin/linker64), for Android 28, built by NDK
                   r27c (12479018), stripped<br>
@@ -24631,17 +25351,27 @@ href="thttps://github.com/termux/termux-packages/tree/master/packages/gdb"
 
 
 
+
                 for the Magisk Module with OpenVPN</a>&nbsp;&nbsp;&nbsp;
               <br>
               <br>
             </td>
           </tr>
           <tr>
-            <td valign="top"><br>
+            <td valign="top"><a name="unfsd3"
+                href="/files/public/Android/unfsd3_v0.11.0-v1.0.0.zip"></a><a
+                href="/files/public/Android/unfsd3_v0.11.0-v1.0.0.zip">unfsd3_v0.11.0-v1.0.0.zip</a><br>
             </td>
-            <td valign="top"><br>
-            </td>
-            <td valign="top"><br>
+            <td valign="top">This <a
+                href="https://github.com/topjohnwu/Magisk"
+                target="_blank" moz-do-not-send="true">Magisk</a> Module
+              contains <b>unfsd3 v0.11</b><b>.0 </b>for <b>arm64</b>
+              CPUs. </td>
+            <td valign="top">see <a
+                href="#Documentation_for_the_Magisk_Module_with_unfsd3">Documentation
+                for the Magisk Module with unfsd3</a>&nbsp;&nbsp;&nbsp;
+              <br>
+              <br>
             </td>
           </tr>
           <tr>
@@ -24682,6 +25412,7 @@ href="thttps://github.com/termux/termux-packages/tree/master/packages/gdb"
     <hr width="100%" size="2"> <a moz-do-not-send="true" href="#top">back
 
 top
+
 
 
 
