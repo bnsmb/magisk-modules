@@ -1,0 +1,665 @@
+#!/system/bin/sh
+#
+#h#  lmm -- list Magisk Modules
+#h#
+#H#  This script lists all installed Magisk Modules including the version, the status (enabled/disabled) and the name.
+#H#  The status of the Magisk Modules that will be deleted after the next reboot is marked with an appended "(*)"
+#H#  The script can also be used to enable, disable, or remove one or more Magisk Modules.
+#H#
+#h#  Usage: lmm [var=value] [-h|--help] [-v|--verbose] [-V|--version] [-H|--noheader] [-r|--reset] [--restore] [--nostatus] [-n|--dry-run] [--list] [--enable] [--disable| [--remove] [--keep] [module]
+#h#
+#H#
+#H# Parameter:
+#H# 
+#H#    var=value  set the variable "var" to "value"
+#H#   --help      print the script usage; use the parameter "-v -h" to print the detailed usage help
+#H#   --version   print the script version and exit
+#H#   --verbose   print verbose messages
+#H#   --noheader  do not print the header and the reboot messages
+#H#   --reset     delete the status file /tmp/lmm.status
+#H#   --restore   restore the status of the Magisk modules as saved in the status file /tmp/lmm.status
+#H#   --nostatus  do not use a status file /tmp/lmm.status
+#H#   --dry-run   only print the commands that would be executed
+#H#   --list      list all installed Magisk modules (this is the default action)
+#H#   --enable    enable one or more Magisk module
+#H#   --disable   disable one or more Magisk module
+#H#   --remove    delete one or more Magisk module
+#H#   --keep      remove the delete semaphor for one or more  Magisk modules
+#H# 
+#h#  "module" is one or more regular expressions for modules or "all"; default for module is "all".
+#h#
+
+#H#  The script prints the message "Reboot the phone to activate the changes." if a reboot is required. 
+#H#  The script returns 0 if everything is okay and 1 if a reboot is required. All other return codes signal an error.
+#H#
+#H#  For modules for which an update is in progress, the version in the column "Module Version" is the version of the module after the update
+#H#
+#H#  The meaning of the values in the column "Install Status" is :
+#H#
+#H#    installed   - the module is installed 
+#H#    update      - an update of the module is in progress; a reboot is required to finish the update
+#H#    new install - the module was just installed but is not yet active; a reboot is required to finish the installation
+#H#    remove      - the module will be deleted after the next reboot
+#H#
+#H#  The script uses the status file /tmp/lmm.status:
+#H#
+#H#  lmm saves the status of the Magisk modules in this file when it is executed for the first time after a reboot of the phone. The file is automatically
+#H#  deleted when the phone is rebooted. 
+#H#  Use the parameter “--nostatus” to not use this file, but note that without this file lmm cannot reliably recognize whether a reboot is necessary or not
+#H#  after changing the status of a Magisk module.
+#H#
+#H#  lmm does not change or delete the modules -- it just creates the semaphor files for Magisk to disable or remove a module
+#H#
+#H#  Supported environment variables:
+#H#    PREFIX            prefix for the commands, e.g. use "PREFIX=echo lmm" to run the script in dry-run mode
+#H#    TRACE             run the script with "set -x" if this variable is set to any value
+#H#    VERBOSE           write verbose messages if VERBOSE is not empt
+#H#    LMM_STATUS_FILE   status file to be used by lmm
+#H#
+#H#  If using another status file plesae make sure that the file will be deleted after a reboot
+#H#
+
+#  History:
+#    09.11.2024 v1.0.0 /bs
+#      initial version
+#
+#    27.02.2025 v1.1.0 /bs 
+#      added the parameter --enable, --disable, --remove, --keep, --verbose, --dry-run, module and all
+#      the script now prints a "-" after the status of the Magisk Modules that will be deleted after the next reboot
+#
+#    18.04.2025 v1.2.0 /bs 
+#      increased the field length for the module version to 25
+#      the script is now aborted if an unknown parameter is used
+#
+#    22.05.2025 v2.0.0 /bs
+#      the processing of the parameter like --verbose was broken in the previous release -- fixed
+#      added the header in the output
+#      added the parameter -H / --noheader
+#      added the column with the install status
+#      added the parameter --delete as alias for --remove
+#      the script now uses the status file /tmp/lmm.status 
+#      added the parameter --reset  and --nostatus
+#      the script now runs with "set -x" if the environment variable TRACE is set
+#      added more messages in verbose mode
+#      added the parameter -V / --version
+#      added the parameter --restore
+#      added the parameter --list
+#
+#    22.05.2025 v2.1.0 /bs
+#      added the parameter "var=value"
+#      the script now prints the name of the status file used to restore the module status
+#
+#    22.05.2025 v2.1.1 /bs
+#      lmm now ignores the environment variable PREFIX if it contains the name of a directory (like in mksh)
+#
+#    22.06.2025 v2.1.2 /bs
+#      lmm now works also for installations with no installed Magisk modules
+#
+#
+#
+__TRUE=0
+__FALSE=1
+
+# ----------------------------------------------------------------------
+# enable tracing if requested
+#
+[ "${TRACE}"x != ""x ] && set -x
+
+# ----------------------------------------------------------------------
+# LogMsg
+#
+# function: write a message to STDOUT
+#
+# usage: LogMsg [message]
+#
+# returns: 0
+#
+function LogMsg {
+  typeset THISMSG="$*"
+
+  echo "${THISMSG}"
+  return 0
+}
+
+# ----------------------------------------------------------------------
+# LogWarning
+#
+# function: write a message prefixed with "WARNING:" to STDOUT
+#
+# usage: LogWarning [message]
+#
+# returns: 0
+#
+function LogWarning {
+  typeset THISMSG="$*"
+
+  LogMsg "WARNING: ${THISMSG}" 
+  return $?
+}
+
+# ----------------------------------------------------------------------
+# LogError
+#
+# function: write a message prefixed with "ERROR:" to STDERR
+#
+# usage: LogError [message]
+#
+# returns: 0
+#
+function LogError {
+  typeset THISMSG="$*"
+
+  LogMsg "ERROR: ${THISMSG}" >&2
+  return $?
+}
+
+
+# ----------------------------------------------------------------------
+# LogInfo
+#
+# function: write a message prefixed with "INFO:" to STDOUT if the variable VERBOSE is set
+#
+# usage: LogInfo [message]
+#
+# returns: 0 - message written
+#          1 - message NOT written
+#
+function LogInfo {
+  typeset THISMSG="$*"
+  typeset THISRC=1
+  
+  if [ "${VERBOSE}"x != ""x ] ; then
+    if [ "${THISMSG}"x != ""x ] ; then 
+      LogMsg "INFO: ${THISMSG}" 
+    else
+      LogMsg ""
+    fi
+    THISRC=0
+  fi
+  return ${THISRC}
+}
+
+# ----------------------------------------------------------------------
+# die
+#
+# function: print a message and end the script
+#
+# usage: die [script_exit_code] [message]
+#
+# the parameter "message" is optional; the script will add a leading "ERROR: "
+# to the message if the script_exit_code is not zero
+#
+# returns: n/a
+#
+function die  {
+  typeset THISRC=$1
+  [ $# -ne 0 ] && shift
+  typeset THISMSG="$*"
+
+  if [ "${THISMSG}"x != ""x ] ; then
+    if [ ${THISRC} != 0 ] ; then
+      echo "ERROR: ${THISMSG} (RC=${THISRC})" >&2
+    else
+      echo "${THISMSG}"
+    fi
+  fi
+
+  exit ${THISRC}
+}
+
+# ----------------------------------------------------------------------
+# list_magisk_modules
+#
+# function: list all installed Magisk modules
+#
+# usage: list_magisk_modules
+#
+# returns: 0
+#
+function list_magisk_modules  {
+  typeset THISRC=0
+
+  if [ ${NO_HEADER} != ${__TRUE} ] ; then
+    printf "%-30s %-25s %-15s %-15s %s\n" "Module ID" "Module Version" "Module status" "Install Status" "Module Description"
+    printf "-----------------------------------------------------------------------------------------------------------\n"
+  fi
+
+  for i in ${DIRECTORY_WITH_MAGISK_MODULES}/* ; do 
+    
+    CUR_MODULE_ID="${i##*/}"
+    [[ ${CUR_MODULE_ID} == \* ]] && break
+     
+    INSTALL_STATUS="installed"
+    if [ -d "${DIRECTORY_WITH_MAGISK_MODULE_UPDATES}/${CUR_MODULE_ID}"  ] ; then
+      PRINT_REBOOT_MESSAGE=${__TRUE}
+
+      if [ ! -r $i/common  ] ; then
+        INSTALL_STATUS="new install"        
+      else
+        INSTALL_STATUS="update"
+      fi
+    elif [ -r $i/remove ] ; then
+      INSTALL_STATUS="remove"
+
+    fi
+     
+    printf "%-30s %-25s %-15s %-15s %s\n" \
+"${CUR_MODULE_ID}" \
+"$(  grep version= $i/module.prop 2>/dev/null | cut -f2 -d "=" | tr -s " " )" \
+"$( [ ! -r $i/disable ] && echo "enabled" || echo "disabled" ) $( [ -r $i/remove ] && echo "(-)" || echo "  " )" \
+"${INSTALL_STATUS}" \
+"$(  grep name= $i/module.prop 2>/dev/null | cut -f2 -d "=" | tr -s " " )" \
+     
+  done   
+  printf "\n"
+  THISRC=0
+
+  return ${THISRC}
+}
+
+
+# ----------------------------------------------------------------------
+# enable verbose mode if requested
+#
+  if [[ " $* " == *\ -v\ * || " $* " == *\ --verbose\ *  ]] ; then
+    VERBOSE=${__TRUE}
+  fi
+
+# ----------------------------------------------------------------------
+# print the usage help and exit if requested via parameter
+#
+if [[ " $* " == *\ -h\ * || " $* " == *\ --help\ *  ]] ; then
+  grep "^#h#" $0 | cut -c4-
+  
+  if [ "${VERBOSE}" != "" ] ; then
+    grep "^#H#" $0 | cut -c4-
+  fi
+  
+  exit 0
+fi
+
+# ----------------------------------------------------------------------
+# check if we're running in Android
+#
+which getprop 2>/dev/null 1>/dev/null
+if [ $? -ne 0 ] ; then
+  die 100 "This script must run in a session on a phone running the Android OS"
+fi
+
+# ----------------------------------------------------------------------
+# restart the script as user "root" if running as non-root user
+#
+if [ "$( id -un )"x != "root"x ] ; then
+   LogInfo "Running as non-root user -- now restarting \"$0 $*\" as user root ..."
+   exec su - -c $0 $*
+   exit $?
+fi
+
+# ----------------------------------------------------------------------
+# init global variables; 
+#
+
+# the default action if called without a parameter is list the installed modules
+#
+LIST_MODULES=${__TRUE}
+
+# default action if called with one or more modules is enable
+#
+ACTION="--enable"
+
+DIRECTORY_WITH_MAGISK_MODULES="/data/adb/modules"
+
+DIRECTORY_WITH_MAGISK_MODULE_UPDATES="/data/adb/modules_update"
+
+# modules which status changed
+#
+MODULES_CHANGED=""
+
+MODULE_STATUS_CHANGED=${__FALSE}
+
+# status file for this script ( /tmp is mounted on a ramdisk -> the files in /tmp do not survive a reboot )
+#
+LMM_STATUS_FILE="${LMM_STATUS_FILE:=/tmp/lmm.status}"
+
+USE_STATUS_FILE=${__TRUE}
+
+NO_HEADER=${__FALSE}
+
+# ----------------------------------------------------------------------
+# check if Magisk is installed
+#
+if [ ! -d "${DIRECTORY_WITH_MAGISK_MODULES}" ] ; then
+  die 25 "The directory with the Magisk modules \"${DIRECTORY_WITH_MAGISK_MODULES}\" does not exist"
+fi
+
+# ----------------------------------------------------------------------
+
+ALL_MODULES=" $( cd "${DIRECTORY_WITH_MAGISK_MODULES}" && ls | tr "\n" " " ) "
+
+LogInfo "The installed Magisk modules are: " && \
+  LogMsg "${ALL_MODULES}"
+
+# ----------------------------------------------------------------------
+#
+# pre process the parameter
+#
+if [ $# -ne 0 ] ; then
+
+  LogInfo "The parameter for the script are "  && \
+    LogMsg "$*"
+  
+  NEW_PARAMETER=""
+  
+  LAST_ACTION=""
+    
+  set -f
+
+  while [ $# -ne 0 ] ; do
+    CUR_PARAMETER="$1"
+    shift
+    
+    case ${CUR_PARAMETER}  in
+
+      *=* )
+        LogInfo "Executing now \"${CUR_PARAMETER}\" ..."
+        eval ${CUR_PARAMETER}
+        if [ $? -ne 0 ] ; then
+          die 30 "Error executing \"${CUR_PARAMETER}\" "
+        fi
+        ;;
+
+      -V | --version )
+         grep  "^#" $0 | grep "/bs"  | awk '{ print $3}' | tail -1      
+         exit 0
+         ;;
+     
+      --restore )
+        if [ ! -r "${LMM_STATUS_FILE}" ] ; then
+          die 21 "Can not restore the status of the Magisk modules because the status file \"${LMM_STATUS_FILE}\" does not exist"
+        else
+          NEW_PARAMETER="${NEW_PARAMETER} ${CUR_PARAMETER}"
+        fi
+        ;;
+
+      --reset | -r )
+        [ -r "${LMM_STATUS_FILE}" ] &&  rm -f "${LMM_STATUS_FILE}" || LogWarning "Error deleting the status file \"${LMM_STATUS_FILE}\" "
+        ;; 
+        
+      --nostatus )
+        USE_STATUS_FILE=${__FALSE}
+        ;;
+
+      ++nostatus )
+        USE_STATUS_FILE=${__TRUE}
+        ;;
+
+      -H | --noheader )
+         NO_HEADER=${__TRUE}
+         ;;
+
+      --verbose | -v )
+        VERBOSE=${__TRUE}
+        ;; 
+
+      ++verbose | +v )
+        VERBOSE=""
+        ;; 
+
+      --dry-run | -n )
+        PREFIX="echo"
+        ;;
+
+      ++dry-run | +n )
+        PREFIX=""
+        ;;
+
+      --list )
+          NEW_PARAMETER="${NEW_PARAMETER} ${CUR_PARAMETER}"
+          ;;
+
+      --enable | --disable | --remove | --keep | --delete )
+
+        NEW_PARAMETER="${NEW_PARAMETER} ${CUR_PARAMETER}"
+
+        if [[ "$1"x == ""x || "$1" == --* ]] ; then
+          NEW_PARAMETER="${NEW_PARAMETER} ${ALL_MODULES} "
+        fi
+
+        LAST_ACTION="${CUR_PARAMETER}"
+        ;;  
+   
+      all )
+        NEW_PARAMETER="${NEW_PARAMETER} ${ALL_MODULES}"
+        LAST_ACTION=""
+        ;;
+
+      --* | -* )
+        die 99 "Unknown parameter found: ${CUR_PARAMETER}"
+        ;;
+        
+      * )
+        NEW_PARAMETER="${NEW_PARAMETER} ${CUR_PARAMETER}"
+        LAST_ACTION=""
+        ;;  
+    esac
+  done
+  
+  if [ "${NEW_PARAMETER}"x = ""x -a "${LAST_ACTION}"x != ""x  ] ; then
+    LogInfo "No module parameter found -- now processing all installed modules"
+    NEW_PARAMETER="${ALL_MODULES}"
+  fi
+  
+  LogInfo "The parameter are now after pre-proccessing "  && \
+    LogMsg "${NEW_PARAMETER}"
+
+
+# check for PREFIX definition in mkshrc
+#
+if [ "${PREFIX}"x != ""x ] ; then
+  if [ -d "${PREFIX}" ] ; then
+    LogInfo "PREFIX contains the name of a directory: \"${PREFIX}\" -- now ignoring the variable PREFIX"
+    PREFIX=""
+  fi
+fi
+
+
+# correct the script parameter
+#    
+  set -- ${NEW_PARAMETER}   
+
+  set +f
+  
+fi
+
+# ----------------------------------------------------------------------
+
+# get the current status of the Magisk Modules
+#
+if [ ${USE_STATUS_FILE} = ${__TRUE} -a -r "${LMM_STATUS_FILE}" ] ; then
+  LogInfo "Reading the status file  \"${LMM_STATUS_FILE}\" ..."
+  CURRENT_MODULE_STATUS="$( cat "${LMM_STATUS_FILE}" )" || LogWarning "Error reading the status file \"${LMM_STATUS_FILE}\" "
+else    
+  CURRENT_MODULE_STATUS="$( set +f ; ls -1 ${DIRECTORY_WITH_MAGISK_MODULES}/*/{disable,remove} 2>/dev/null | sort )"
+  if [ ${USE_STATUS_FILE} = ${__TRUE} ] ; then
+    LogInfo "Writing the status file  \"${LMM_STATUS_FILE}\" ..."
+    echo "${CURRENT_MODULE_STATUS}" >"${LMM_STATUS_FILE}" || LogWarning "Error writing the status file \"${LMM_STATUS_FILE}\" "
+  fi
+fi
+
+LogInfo "The current Module status is :" && \
+ LogMsg "" && \
+ LogMsg "${CURRENT_MODULE_STATUS}" && \
+ LogMsg ""
+
+# ----------------------------------------------------------------------
+
+PRINT_REBOOT_MESSAGE=${__FALSE}
+
+MODULE_REMOVAL_IN_PROGRESS=${__FALSE}
+
+if [ $# -ne 0 ] ; then
+  LIST_MODULES=${__FALSE}
+
+  while [ $# -ne 0 ] ; do
+    CUR_PARAMETER="$1"
+    shift
+    
+    case ${CUR_PARAMETER} in 
+
+      --restore )
+        if [ ! -r "${LMM_STATUS_FILE}" ] ; then
+          LogWarning "The status file     \"${LMM_STATUS_FILE}\" does not exist - can not restore the status of the Magisk modules"
+        else
+          LogMsg "Restoring the status of the Magisk modules from the file \"${LMM_STATUS_FILE}\" ..."
+          
+          FILES_TO_DELETE="$( ls ${DIRECTORY_WITH_MAGISK_MODULES}/*/{disable,remove} 2>/dev/null )"
+          for CUR_FILE in ${FILES_TO_DELETE} ; do
+            LogInfo "Removing the file \"${CUR_FILE}\" ..."
+            rm "${CUR_FILE}"
+          done
+
+          FILES_TO_CREATE="$( grep -v "^#" "${LMM_STATUS_FILE}" ) "
+          for CUR_FILE in ${FILES_TO_CREATE} ; do
+            LogInfo "Creating the file \"${CUR_FILE}\" ..."
+            touch "${CUR_FILE}"
+          done
+
+          CURRENT_MODULE_STATUS="${FILES_TO_CREATE}"
+
+        fi
+        ;;
+
+      --list )
+         list_magisk_modules
+         ;;
+
+      --enable )
+        ACTION="${CUR_PARAMETER}"
+        ;;
+
+      --disable )
+        ACTION="${CUR_PARAMETER}"
+        ;;
+
+      --remove | --delete )
+        ACTION="${CUR_PARAMETER}"
+        ;;
+
+      --keep )
+        ACTION="${CUR_PARAMETER}"
+        ;;
+
+      * )
+        MODULE_REGEX="${CUR_PARAMETER}"
+
+        MODULE_EXIST=${__FALSE}
+          
+        for CUR_MODULE in ${ALL_MODULES} ; do
+        
+          if [[ ${CUR_MODULE} == ${MODULE_REGEX} ]] ; then
+            
+            case ${ACTION} in
+
+              --enable )
+                LogMsg "Enabling the Magisk module \"${CUR_MODULE}\"  ..."
+                ${PREFIX} rm -f "${DIRECTORY_WITH_MAGISK_MODULES}/${CUR_MODULE}/remove"
+                ${PREFIX} rm -f "${DIRECTORY_WITH_MAGISK_MODULES}/${CUR_MODULE}/disable"
+                MODULE_STATUS_CHANGED=${__TRUE}
+                MODULE_EXIST=${__TRUE}
+                ;;
+
+              --disable )
+                LogMsg "Disabling the Magisk module \"${CUR_MODULE}\"  ..."
+                ${PREFIX} rm -f "${DIRECTORY_WITH_MAGISK_MODULES}/${CUR_MODULE}/remove"
+                ${PREFIX} touch "${DIRECTORY_WITH_MAGISK_MODULES}/${CUR_MODULE}/disable"
+                MODULE_EXIST=${__TRUE}
+                MODULE_STATUS_CHANGED=${__TRUE}
+                ;;
+
+              --remove | --delete )
+                LogMsg "Removing the Magisk module \"${CUR_MODULE}\"  ..."
+                ${PREFIX} rm -f "${DIRECTORY_WITH_MAGISK_MODULES}/${CUR_MODULE}/disable"
+                ${PREFIX} touch "${DIRECTORY_WITH_MAGISK_MODULES}/${CUR_MODULE}/remove"
+                MODULE_EXIST=${__TRUE}
+                MODULE_STATUS_CHANGED=${__TRUE}
+                MODULE_REMOVAL_IN_PROGRESS=${__TRUE}
+                ;;
+
+              --keep )
+                LogMsg "Keep the Magisk module \"${CUR_MODULE}\"  ..."
+                ${PREFIX} rm -f "${DIRECTORY_WITH_MAGISK_MODULES}/${CUR_MODULE}/remove"
+                MODULE_EXIST=${__TRUE}
+                MODULE_STATUS_CHANGED=${__TRUE}
+                ;;
+            esac
+          fi   
+        done
+        
+        if [ ${MODULE_EXIST} = ${__FALSE} ] ;then
+          LogMsg ""
+          if [[ ${MODULE_REGEX} == *\** || ${MODULE_REGEX} == *\?* ]] ;then
+            LogError "No Magisk Module matches the regular expression \"${MODULE_REGEX}\" "
+          else
+            LogError "The Magisk Module \"${MODULE_REGEX}\" does not exist"
+          fi
+        fi
+        ;;
+        
+    esac
+  done
+
+else
+
+  list_magisk_modules
+
+fi
+
+NEW_MODULE_STATUS="$( set +f ; ls -1 ${DIRECTORY_WITH_MAGISK_MODULES}/*/{disable,remove} 2>/dev/null | sort )"
+
+LogInfo "The new Module status is :" && \
+  LogMsg "" && \
+  LogMsg "${NEW_MODULE_STATUS}" && \
+  LogMsg ""
+
+LogMsg ""
+
+if [ -d "${DIRECTORY_WITH_MAGISK_MODULE_UPDATES}" ] ; then
+  MODULES_CHANGED="$( cd "${DIRECTORY_WITH_MAGISK_MODULE_UPDATES}" 2>/dev/null && ls  )"
+fi
+
+MODULES_TO_REMOVE="$( set +f ; ls -1 ${DIRECTORY_WITH_MAGISK_MODULES}/*/remove 2>/dev/null | cut -f5 -d"/" )"
+MODULES_TO_INSTALL="$( set +f ; ls -1d ${DIRECTORY_WITH_MAGISK_MODULE_UPDATES}/* 2>/dev/null | cut -f5 -d"/" )"
+
+MODULES_WITH_CHANGED_STATUS="$( echo "${CURRENT_MODULE_STATUS}" "${NEW_MODULE_STATUS}" | tr " " "\n" | sort | uniq -u | cut -f5 -d"/" )"
+MODULES_CHANGED="$( echo "${MODULES_TO_INSTALL}" "${MODULES_TO_REMOVE}" "${MODULES_CHANGED} ${MODULES_WITH_CHANGED_STATUS}" | tr " " "\n" | sort | uniq )"
+
+if [ "${MODULES_CHANGED}"x != ""x ] ; then
+
+  PRINT_REBOOT_MESSAGE=${__TRUE}
+
+  if [ ${NO_HEADER} != ${__TRUE} ]; then
+    LogMsg "Magisk modules that require a reboot: "
+    LogMsg "${MODULES_CHANGED}" 
+  fi
+
+  THISRC=1
+else
+  LogInfo "The status of all Magisk modules is okay - no reboot required"  
+  THISRC=0
+fi
+
+if [ ${PRINT_REBOOT_MESSAGE} = ${__TRUE} ] ; then
+
+  if [ ${NO_HEADER} != ${__TRUE} ] ; then
+    LogMsg ""
+    LogMsg "Reboot the phone to activate the changes."
+    LogMsg ""
+  fi
+  THISRC=1
+fi
+
+LogInfo "The returncode of the script is ${THISRC}"
+  
+exit ${THISRC}
+
+

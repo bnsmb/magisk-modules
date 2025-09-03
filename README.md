@@ -4,6 +4,24 @@ This repository contains most of my Magisk Modules.
 
 The binaries in the Magisk modules in this repository are for Android running on an **arm64** CPU.
 
+There are some useful scripts for maintaining Magisk Modules in an adb shell in the directory **scripts**:
+i
+| Script | Description | comment |
+| ---| ---| ---| 
+| install_mm.sh  | install a Magisk Module via magisk binary in an adb shell | | 
+| lmm   | list and maintain installed Magisk Modules | | 
+| list_bind_mounts.sh  | list bind mounts created by Magisk for Magisk Modules | | 
+| recreate_bind_mount.sh | update a file installed via Magisk Module without rebooting the phone | | 
+
+| Binary | version | source code | comment |
+| ---| ---| ---| ---|
+| 7zz  | 25.00 | https://www.7-zip.org | statically linked | 
+| gawk | 5.3.2 |  https://www.gnu.org/software/gawk/ | |
+| bash | 5.2.37|  https://www.gnu.org/software/bash/ | dynamically linked for the Android OS libraries |
+| bash-static | 5.2.37|  https://www.gnu.org/software/bash/ | statically linked |
+
+
+
 **Update 15.08.2025**
 
 Old versions of the Magisk modules are now in the sub directory [archive](Magisk_Modules/archive).
