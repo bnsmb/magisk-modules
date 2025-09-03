@@ -36,7 +36,7 @@ A repository with the Magisk Module with **cmake version 3.30.4** and **ninja ve
 
 The Playstore version in the Magisk Module 
 
-**PlayStore_for_MicroG_28.3.16.21-v1.0.0.zip**
+**PlayStore_for_MicroG_28.3.16.21-v1.1.0.zip**
 
 in this repo is **28.3.16.21**.
 
