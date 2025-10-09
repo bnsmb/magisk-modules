@@ -46,13 +46,20 @@ A repository with the Magisk Module with **cmake version 3.30.4** and **ninja ve
 
 ---
 
-The Playstore version in the Magisk Module 
+The recommended Magisk Module with the PlayStore for Custom ROMs with **MicroG** is
 
-**PlayStore_for_MicroG_28.3.16.21-v1.1.0.zip**
+**PlayStore_for_MicroG_41.1.19-31-v1.2.0.zip**
 
-in this repo is **28.3.16.21**.
+This Magisk module contains the libraries for **arm64**, **arm**, **x86**, and **x86-64** CPUs.
 
-This version is quite old, but the installed Playstore is automatically updated to the latest version after the configuration of the Google account - on **29.01.2025** this is version **44.6.25.31**.
+The Magisk Module has been successfully tested on Android 12, 13, 14, 15 and 16.
+
+The version of the PlayStore in this Magisk Module is quite old, but the installed Playstore is automatically updated to the latest version after the installation
+
+The documentation for this Magisk Module is here:
+
+[http://bnsmb.de/My_HowTos_for_Android.html#How_to_replace_the_FakeStore_in_MicroG_with_the_original_Playstore](http://bnsmb.de/My_HowTos_for_Android.html#How_to_replace_the_FakeStore_in_MicroG_with_the_original_Playstore)
+
 
 ---
 
