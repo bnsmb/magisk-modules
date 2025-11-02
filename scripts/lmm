@@ -1,24 +1,24 @@
 #!/system/bin/sh
 #
-#h#  lmm -- list Magisk Modules
+#h# lmm ##VERSION## -- list Magisk Modules
 #h#
-#H#  This script lists all installed Magisk Modules including the version, the status (enabled/disabled) and the name.
-#H#  The status of the Magisk Modules that will be deleted after the next reboot is marked with an appended "(*)"
-#H#  The script can also be used to enable, disable, or remove one or more Magisk Modules.
+#H# This script lists all installed Magisk Modules including the version, the status (enabled/disabled) and the name.
+#H# The status of the Magisk Modules that will be deleted after the next reboot is marked with an appended "(*)"
+#H# The script can also be used to enable, disable, or remove one or more Magisk Modules.
 #H#
-#h#  Usage: lmm [var=value] [-h|--help] [-v|--verbose] [-V|--version] [-H|--noheader] [-r|--reset] [--restore] [--nostatus] [-n|--dry-run] [--list] [--enable] [--disable| [--remove] [--keep] [module]
+#h# Usage: lmm [var=value] [-h|--help] [-v|--verbose] [-V|--version] [-H|--noheader] [-r|--reset] [--restore] [--nostatus] [-n|--dry-run] [--list[:status1,...,status#]] [--enable] [--disable| [--remove] [--keep] [module]
 #h#
 #H#
 #H# Parameter:
 #H# 
-#H#    var=value  set the variable "var" to "value"
+#H#   var=value  set the variable "var" to "value"
 #H#   --help      print the script usage; use the parameter "-v -h" to print the detailed usage help
 #H#   --version   print the script version and exit
 #H#   --verbose   print verbose messages
 #H#   --noheader  do not print the header and the reboot messages
-#H#   --reset     delete the status file /tmp/lmm.status
-#H#   --restore   restore the status of the Magisk modules as saved in the status file /tmp/lmm.status
-#H#   --nostatus  do not use a status file /tmp/lmm.status
+#H#   --reset     delete the status file 
+#H#   --restore   restore the status of the Magisk modules as saved in the status file 
+#H#   --nostatus  do not use a status file 
 #H#   --dry-run   only print the commands that would be executed
 #H#   --list      list all installed Magisk modules (this is the default action)
 #H#   --enable    enable one or more Magisk module
@@ -28,35 +28,57 @@
 #H# 
 #h#  "module" is one or more regular expressions for modules or "all"; default for module is "all".
 #h#
-
-#H#  The script prints the message "Reboot the phone to activate the changes." if a reboot is required. 
-#H#  The script returns 0 if everything is okay and 1 if a reboot is required. All other return codes signal an error.
+#H# 
+#H# To list only selected modules, add the status of the modules to list to the parameter "--list":
+#H# 
+#H#   --list[:status1,..,status#]
+#H# 
+#H# The known keywords for the status are:
+#H# 
+#H# Status                        Description
+#H# ------------------------------------------------------------------------------------------------------------------
+#H# enabled enable                list only enabled Magisk modules
+#H# disabled disable              list only disabled Magisk modules
+#H# update updated                list only updated Magisk modules
+#H# new                           list only new Magisk modules
+#H# installed install             list only Magisk modules that should not be deleted or updated after the next reboot
+#H# changed change reboot         list only Magisk modules that require a reboot
+#H# not_changed                   list only Magisk modules that are not changed at all
+#H# removed remove                list only Magisk modules that should be deleted after the next reboot
+#H# keep                          list only Magisk modules that should not be deleted after the next reboot
+#H# 
+#H# If multiple statuses are used, they are concatenated with "or"
 #H#
-#H#  For modules for which an update is in progress, the version in the column "Module Version" is the version of the module after the update
+#H# The script prints the message "Reboot the phone to activate the changes." if a reboot is required. 
+#H# Note that this function works not reliable if no status file is used.
 #H#
-#H#  The meaning of the values in the column "Install Status" is :
+#H# The script returns 0 if everything is okay and 1 if a reboot is required. All other return codes signal an error.
 #H#
-#H#    installed   - the module is installed 
-#H#    update      - an update of the module is in progress; a reboot is required to finish the update
-#H#    new install - the module was just installed but is not yet active; a reboot is required to finish the installation
-#H#    remove      - the module will be deleted after the next reboot
+#H# For modules for which an update is in progress, the version in the column "Module Version" is the version of the module after the update
 #H#
-#H#  The script uses the status file /tmp/lmm.status:
+#H# The meaning of the values in the column "Install Status" is :
 #H#
-#H#  lmm saves the status of the Magisk modules in this file when it is executed for the first time after a reboot of the phone. The file is automatically
-#H#  deleted when the phone is rebooted. 
-#H#  Use the parameter “--nostatus” to not use this file, but note that without this file lmm cannot reliably recognize whether a reboot is necessary or not
-#H#  after changing the status of a Magisk module.
+#H#   installed   - the module is installed 
+#H#   update      - an update of the module is in progress; a reboot is required to finish the update
+#H#   new install - the module was just installed but is not yet active; a reboot is required to finish the installation
+#H#   remove      - the module will be deleted after the next reboot
 #H#
-#H#  lmm does not change or delete the modules -- it just creates the semaphor files for Magisk to disable or remove a module
+#H# The default status file for the script is: /dev/lmm.status:
 #H#
-#H#  Supported environment variables:
+#H# lmm saves the status of the Magisk modules in this file when it is executed for the first time after a reboot of the phone. The file is automatically
+#H# deleted when the phone is rebooted. 
+#H# Use the parameter “--nostatus” to not use this file, but note that without this file lmm cannot reliably recognize whether a reboot is necessary or not
+#H# after changing the status of a Magisk module.
+#H#
+#H# lmm does not change or delete the modules -- it just creates the semaphor files for Magisk to disable or remove a module
+#H#
+#H# Supported environment variables:
 #H#    PREFIX            prefix for the commands, e.g. use "PREFIX=echo lmm" to run the script in dry-run mode
 #H#    TRACE             run the script with "set -x" if this variable is set to any value
-#H#    VERBOSE           write verbose messages if VERBOSE is not empt
+#H#    VERBOSE           write verbose messages if VERBOSE is not empty
 #H#    LMM_STATUS_FILE   status file to be used by lmm
 #H#
-#H#  If using another status file plesae make sure that the file will be deleted after a reboot
+#H# If you use a different status file, please make sure that the file is deleted after a reboot
 #H#
 
 #  History:
@@ -95,10 +117,23 @@
 #    22.06.2025 v2.1.2 /bs
 #      lmm now works also for installations with no installed Magisk modules
 #
+#    08.09.2025 v2.2.0 /bs
+#      lmm now also handles modules with missing module.prop file
+#      lmm now also handles module.prop files in DOS format
 #
+#    01.11.2025 v3.0.0 /bs
+#      enhanced the usage for the parameter "--list" to list only modules with specific status
+#      the default status file is now /dev/lmm.status
+#      fixed some typos in the messages and comments
 #
+
 __TRUE=0
 __FALSE=1
+
+
+# get the version of this script
+#
+SCRIPT_VERSION="$( grep  "^#" $0 | grep "/bs"  | awk '{ print $3}' | tail -1   )"
 
 # ----------------------------------------------------------------------
 # enable tracing if requested
@@ -207,6 +242,108 @@ function die  {
   exit ${THISRC}
 }
 
+
+# ----------------------------------------------------------------------
+# process_parameter_list_status
+#
+# function: process the values for the parameter "--list"
+#
+# usage: process_parameter_list_status [module_status_string]
+#
+# returns: ${__TRUE}  - the parameter are okay
+#          ${__FALSE} - one or more invalid parameter found
+#
+# The script prints the new status string to STDOUT
+#
+function process_parameter_list_status {
+  typeset THISRC=${__TRUE}
+
+  typeset NEW_MODULE_SELECTION=""
+  typeset CUR_VAR=""
+  
+  typeset MODULE_STATUS_STRING="$*"
+  
+  if [ "${MODULE_STATUS_STRING}"x != ""x ] ; then
+    MODULE_STATUS_STRING="$( echo "${MODULE_STATUS_STRING}" | tr ",:" "  " )"
+
+    for CUR_VAR in ${MODULE_STATUS_STRING} ; do
+      case ${CUR_VAR} in 
+        "enabled" | "enable" )
+          NEW_MODULE_SELECTION="${NEW_MODULE_SELECTION} enabled"
+          ;;
+
+        "disabled" | "disable" )
+          NEW_MODULE_SELECTION="${NEW_MODULE_SELECTION} disabled"
+          ;;
+
+        "update" | "updated" )
+          NEW_MODULE_SELECTION="${NEW_MODULE_SELECTION} updated"
+          ;;
+
+        "new")
+          NEW_MODULE_SELECTION="${NEW_MODULE_SELECTION} new"
+          ;;
+
+        "installed" | "install" | "keep"  )
+          NEW_MODULE_SELECTION="${NEW_MODULE_SELECTION} installed"
+          ;;
+
+         "changed" | "change" | "reboot" )
+          NEW_MODULE_SELECTION="${NEW_MODULE_SELECTION} changed"
+          ;;
+
+         "not_changed"  )
+          NEW_MODULE_SELECTION="${NEW_MODULE_SELECTION} not_changed"
+          ;;
+
+         "removed" | "remove" )
+          NEW_MODULE_SELECTION="${NEW_MODULE_SELECTION} removed"
+          ;;
+
+         "keep" | "not_removed" )
+          NEW_MODULE_SELECTION="${NEW_MODULE_SELECTION} keep"
+          ;;
+
+        * )
+          LogError "Invalid value for the parameter \"--list\" found: \"${CUR_VAR}\" "
+          THISRC=${__FALSE}
+          ;;
+      esac
+      
+    done
+    echo "${NEW_MODULE_SELECTION}"
+  fi
+  
+  return ${THISRC}
+}
+
+
+# ----------------------------------------------------------------------
+# retrieve_module_status
+#
+# function: retrieve the status of the installed Magisk modules
+#
+# usage: retrieve_module_status
+#
+# returns: 0
+#
+function retrieve_module_status {
+  typeset THISRC=0
+
+  NEW_MODULE_STATUS="$( set +f ; ls -1 ${DIRECTORY_WITH_MAGISK_MODULES}/*/{disable,remove} 2>/dev/null | sort )"
+  if [ -d "${DIRECTORY_WITH_MAGISK_MODULE_UPDATES}" ] ; then 
+    MODULES_CHANGED="$( cd "${DIRECTORY_WITH_MAGISK_MODULE_UPDATES}" 2>/dev/null && ls  )"
+  fi
+
+  MODULES_TO_REMOVE="$( set +f ; ls -1 ${DIRECTORY_WITH_MAGISK_MODULES}/*/remove 2>/dev/null | cut -f5 -d"/" )"
+  MODULES_TO_INSTALL="$( set +f ; ls -1d ${DIRECTORY_WITH_MAGISK_MODULE_UPDATES}/* 2>/dev/null | cut -f5 -d"/" )"
+
+  MODULES_WITH_CHANGED_STATUS="$( echo "${CURRENT_MODULE_STATUS}" "${NEW_MODULE_STATUS}" | tr " " "\n" | sort | uniq -u | cut -f5 -d"/" )"
+  MODULES_CHANGED="$( echo "${MODULES_TO_INSTALL}" "${MODULES_TO_REMOVE}" "${MODULES_CHANGED} ${MODULES_WITH_CHANGED_STATUS}" | tr " " "\n" | sort | uniq )"
+
+  return ${THISRC}
+}
+
 # ----------------------------------------------------------------------
 # list_magisk_modules
 #
@@ -219,7 +356,28 @@ function die  {
 function list_magisk_modules  {
   typeset THISRC=0
 
+  typeset MODULE_PROP_CONTENTS=""
+  typeset MODULE_VERSION=""
+  typeset MODULE_NAME=""
+
+  typeset CUR_VAR=""
+  typeset PRINT_MODULE=${__TRUE}
+
+  typeset MODULE_STATUS=""
+ 
+  typeset NO_MODULES_FOUND=0
+
+
+  typeset CUR_MODULES_CHANGED="$( echo "${MODULES_WITH_CHANGED_STATUS}" | tr "\n" " " )"
+
   if [ ${NO_HEADER} != ${__TRUE} ] ; then
+
+    if [ "${MODULE_SELECTION}"x != ""x ] ; then
+      printf "\nList only modules with this status: ${MODULE_SELECTION}\n\n"
+    else
+      printf "\nList all modules\n\n"
+    fi
+  
     printf "%-30s %-25s %-15s %-15s %s\n" "Module ID" "Module Version" "Module status" "Install Status" "Module Description"
     printf "-----------------------------------------------------------------------------------------------------------\n"
   fi
@@ -242,21 +400,90 @@ function list_magisk_modules  {
       INSTALL_STATUS="remove"
 
     fi
-     
-    printf "%-30s %-25s %-15s %-15s %s\n" \
+      
+    [ ! -r $i/disable ] && MODULE_STATUS="enabled" || MODULE_STATUS="disabled"
+
+    MODULE_PROP_CONTENTS="$( cat $i/module.prop 2>/dev/null | dos2unix )"
+    MODULE_VERSION="$( echo "${MODULE_PROP_CONTENTS}" | grep version= | cut -f2 -d "=" | tr -s " " )"
+    MODULE_NAME="$( echo "${MODULE_PROP_CONTENTS}" | grep name= | cut -f2 -d "=" | tr -s " " )"
+    
+    MODULE_NAME="${MODULE_NAME:=WARNING: no valid and complete module.prop file for this module found}"
+    MODULE_VERSION="${MODULE_VERSION:=???}"
+
+    if [ "${MODULE_SELECTION}"x != ""x ] ; then
+      PRINT_MODULE=${__FALSE}
+      for CUR_VAR in ${MODULE_SELECTION} ; do
+        case ${CUR_VAR} in
+    
+          "enabled" ) 
+            [[ "${MODULE_STATUS}"x == "enabled"x ]] && PRINT_MODULE=${__TRUE}
+            ;;
+
+          "disabled" )
+            [[ "${MODULE_STATUS}"x == "disabled"x ]] && PRINT_MODULE=${__TRUE}
+            ;;
+
+          "updated" )
+            [[ "${INSTALL_STATUS}"x == "update"x ]] && PRINT_MODULE=${__TRUE}
+            ;;
+
+          "new" )
+            [[ "${INSTALL_STATUS}"x == "new install"x ]] && PRINT_MODULE=${__TRUE}
+            ;;
+
+          "installed" )
+            [[ "${INSTALL_STATUS}"x == "installed"x ]] && PRINT_MODULE=${__TRUE}
+            ;;
+
+          "changed" )
+            [[ " ${CUR_MODULES_CHANGED} " == *\ ${CUR_MODULE_ID}\ * ]] && PRINT_MODULE=${__TRUE}
+            ;;
+
+          "not_changed" )
+            [[ " ${CUR_MODULES_CHANGED} " != *\ ${CUR_MODULE_ID}\ * ]] && PRINT_MODULE=${__TRUE}
+            ;;
+
+          "removed" )
+            [[ "${INSTALL_STATUS}"x == "remove"x ]] && PRINT_MODULE=${__TRUE}
+            ;;
+
+          "keep" )
+            [[ "${INSTALL_STATUS}"x != "remove"x ]] && PRINT_MODULE=${__TRUE}
+            ;;
+          
+        esac
+        [ ${PRINT_MODULE} = ${__TRUE} ] && break
+      done
+    else
+      PRINT_MODULE=${__TRUE}
+    fi
+    
+    if [ ${PRINT_MODULE} = ${__TRUE} ] ; then
+      (( NO_MODULES_FOUND = NO_MODULES_FOUND + 1 ))
+      printf "%-30s %-25s %-15s %-15s %s\n" \
 "${CUR_MODULE_ID}" \
-"$(  grep version= $i/module.prop 2>/dev/null | cut -f2 -d "=" | tr -s " " )" \
+"${MODULE_VERSION}" \
 "$( [ ! -r $i/disable ] && echo "enabled" || echo "disabled" ) $( [ -r $i/remove ] && echo "(-)" || echo "  " )" \
 "${INSTALL_STATUS}" \
-"$(  grep name= $i/module.prop 2>/dev/null | cut -f2 -d "=" | tr -s " " )" \
-     
+"${MODULE_NAME}"
+    fi   
   done   
   printf "\n"
   THISRC=0
 
+  if [ ${NO_HEADER} != ${__TRUE} ] ; then
+    if [ ${NO_MODULES_FOUND} = 0 ] ; then
+      printf "\nNo modules found that match the selection \"${MODULE_SELECTION}\" \n\n"
+    fi
+  fi
+
   return ${THISRC}
 }
 
+
+# ----------------------------------------------------------------------
+# main function
+#
 
 # ----------------------------------------------------------------------
 # enable verbose mode if requested
@@ -265,14 +492,15 @@ function list_magisk_modules  {
     VERBOSE=${__TRUE}
   fi
 
+
 # ----------------------------------------------------------------------
 # print the usage help and exit if requested via parameter
 #
 if [[ " $* " == *\ -h\ * || " $* " == *\ --help\ *  ]] ; then
-  grep "^#h#" $0 | cut -c4-
+  grep "^#h#" $0 | cut -c4- | sed "s/##VERSION##/${SCRIPT_VERSION}/g"
   
   if [ "${VERBOSE}" != "" ] ; then
-    grep "^#H#" $0 | cut -c4-
+    grep "^#H#" $0 | cut -c4- |  sed "s/##VERSION##/${SCRIPT_VERSION}/g"
   fi
   
   exit 0
@@ -299,10 +527,6 @@ fi
 # init global variables; 
 #
 
-# the default action if called without a parameter is list the installed modules
-#
-LIST_MODULES=${__TRUE}
-
 # default action if called with one or more modules is enable
 #
 ACTION="--enable"
@@ -317,9 +541,9 @@ MODULES_CHANGED=""
 
 MODULE_STATUS_CHANGED=${__FALSE}
 
-# status file for this script ( /tmp is mounted on a ramdisk -> the files in /tmp do not survive a reboot )
+# status file for this script ( /dev is mounted on a ramdisk -> the files in /dev do not survive a reboot )
 #
-LMM_STATUS_FILE="${LMM_STATUS_FILE:=/tmp/lmm.status}"
+LMM_STATUS_FILE="${LMM_STATUS_FILE:=/dev/lmm.status}"
 
 USE_STATUS_FILE=${__TRUE}
 
@@ -351,6 +575,8 @@ if [ $# -ne 0 ] ; then
   NEW_PARAMETER=""
   
   LAST_ACTION=""
+
+  MODULE_SELECTION=""
     
   set -f
 
@@ -369,7 +595,7 @@ if [ $# -ne 0 ] ; then
         ;;
 
       -V | --version )
-         grep  "^#" $0 | grep "/bs"  | awk '{ print $3}' | tail -1      
+         echo "${SCRIPT_VERSION}"
          exit 0
          ;;
      
@@ -413,9 +639,9 @@ if [ $# -ne 0 ] ; then
         PREFIX=""
         ;;
 
-      --list )
-          NEW_PARAMETER="${NEW_PARAMETER} ${CUR_PARAMETER}"
-          ;;
+      --list | --list:* )
+        NEW_PARAMETER="${NEW_PARAMETER} ${CUR_PARAMETER}"
+        ;;
 
       --enable | --disable | --remove | --keep | --delete )
 
@@ -436,9 +662,11 @@ if [ $# -ne 0 ] ; then
       --* | -* )
         die 99 "Unknown parameter found: ${CUR_PARAMETER}"
         ;;
-        
+
+
       * )
-        NEW_PARAMETER="${NEW_PARAMETER} ${CUR_PARAMETER}"
+
+        NEW_PARAMETER="${NEW_PARAMETER} $( echo "${CUR_PARAMETER}" | tr "," " " )"
         LAST_ACTION=""
         ;;  
     esac
@@ -497,8 +725,11 @@ PRINT_REBOOT_MESSAGE=${__FALSE}
 
 MODULE_REMOVAL_IN_PROGRESS=${__FALSE}
 
-if [ $# -ne 0 ] ; then
-  LIST_MODULES=${__FALSE}
+if [ $# -eq 0 ] ; then
+#
+# the default action is "--list"
+  set -- --list
+fi
 
   while [ $# -ne 0 ] ; do
     CUR_PARAMETER="$1"
@@ -508,7 +739,7 @@ if [ $# -ne 0 ] ; then
 
       --restore )
         if [ ! -r "${LMM_STATUS_FILE}" ] ; then
-          LogWarning "The status file     \"${LMM_STATUS_FILE}\" does not exist - can not restore the status of the Magisk modules"
+          LogWarning "The status file \"${LMM_STATUS_FILE}\" does not exist - can not restore the status of the Magisk modules"
         else
           LogMsg "Restoring the status of the Magisk modules from the file \"${LMM_STATUS_FILE}\" ..."
           
@@ -529,7 +760,14 @@ if [ $# -ne 0 ] ; then
         fi
         ;;
 
-      --list )
+      --list:* | --list )
+         if [[ ${CUR_PARAMETER} == *:* ]] ; then
+           MODULE_SELECTION="$( process_parameter_list_status "${CUR_PARAMETER#*:}" )"           
+         else
+           MODULE_SELECTION=""
+         fi    
+         retrieve_module_status
+
          list_magisk_modules
          ;;
 
@@ -562,6 +800,16 @@ if [ $# -ne 0 ] ; then
 
               --enable )
                 LogMsg "Enabling the Magisk module \"${CUR_MODULE}\"  ..."
+
+                if [ -r "${LMM_STATUS_FILE}" ] ; then
+                  grep "${DIRECTORY_WITH_MAGISK_MODULES}/${CUR_MODULE}/disable"  "${LMM_STATUS_FILE}" >/dev/null || \
+                    LogMsg "  The Magisk Module \"${CUR_MODULE}\" is not disabled"
+                
+                elif [ ! -r "${DIRECTORY_WITH_MAGISK_MODULES}/${CUR_MODULE}/disable" ] ; then
+                  LogMsg "  The Magisk Module \"${CUR_MODULE}\" is not marked for disable"
+
+                fi
+
                 ${PREFIX} rm -f "${DIRECTORY_WITH_MAGISK_MODULES}/${CUR_MODULE}/remove"
                 ${PREFIX} rm -f "${DIRECTORY_WITH_MAGISK_MODULES}/${CUR_MODULE}/disable"
                 MODULE_STATUS_CHANGED=${__TRUE}
@@ -570,6 +818,15 @@ if [ $# -ne 0 ] ; then
 
               --disable )
                 LogMsg "Disabling the Magisk module \"${CUR_MODULE}\"  ..."
+
+                if [ -r "${LMM_STATUS_FILE}" ] ; then
+                  grep "${DIRECTORY_WITH_MAGISK_MODULES}/${CUR_MODULE}/disable"  "${LMM_STATUS_FILE}" >/dev/null && \
+                    LogMsg "  The Magisk Module \"${CUR_MODULE}\" is already disabled"
+                
+                elif [ -r "${DIRECTORY_WITH_MAGISK_MODULES}/${CUR_MODULE}/disable" ] ; then
+                  LogMsg "  The Magisk Module \"${CUR_MODULE}\" is already marked for disable"
+                fi
+
                 ${PREFIX} rm -f "${DIRECTORY_WITH_MAGISK_MODULES}/${CUR_MODULE}/remove"
                 ${PREFIX} touch "${DIRECTORY_WITH_MAGISK_MODULES}/${CUR_MODULE}/disable"
                 MODULE_EXIST=${__TRUE}
@@ -578,7 +835,13 @@ if [ $# -ne 0 ] ; then
 
               --remove | --delete )
                 LogMsg "Removing the Magisk module \"${CUR_MODULE}\"  ..."
+                
+                if [ -r "${DIRECTORY_WITH_MAGISK_MODULES}/${CUR_MODULE}/remove" ] ;then
+                  LogMsg "  The Magisk Module \"${CUR_MODULE}\" is already marked for removal"
+                fi
+                
                 ${PREFIX} rm -f "${DIRECTORY_WITH_MAGISK_MODULES}/${CUR_MODULE}/disable"
+                
                 ${PREFIX} touch "${DIRECTORY_WITH_MAGISK_MODULES}/${CUR_MODULE}/remove"
                 MODULE_EXIST=${__TRUE}
                 MODULE_STATUS_CHANGED=${__TRUE}
@@ -587,6 +850,11 @@ if [ $# -ne 0 ] ; then
 
               --keep )
                 LogMsg "Keep the Magisk module \"${CUR_MODULE}\"  ..."
+
+                if [ ! -r "${DIRECTORY_WITH_MAGISK_MODULES}/${CUR_MODULE}/remove" ] ;then
+                  LogMsg "  The Magisk Module \"${CUR_MODULE}\" is not marked for removal"
+                fi
+                
                 ${PREFIX} rm -f "${DIRECTORY_WITH_MAGISK_MODULES}/${CUR_MODULE}/remove"
                 MODULE_EXIST=${__TRUE}
                 MODULE_STATUS_CHANGED=${__TRUE}
@@ -608,13 +876,9 @@ if [ $# -ne 0 ] ; then
     esac
   done
 
-else
 
-  list_magisk_modules
 
-fi
-
-NEW_MODULE_STATUS="$( set +f ; ls -1 ${DIRECTORY_WITH_MAGISK_MODULES}/*/{disable,remove} 2>/dev/null | sort )"
+retrieve_module_status
 
 LogInfo "The new Module status is :" && \
   LogMsg "" && \
@@ -623,15 +887,6 @@ LogInfo "The new Module status is :" && \
 
 LogMsg ""
 
-if [ -d "${DIRECTORY_WITH_MAGISK_MODULE_UPDATES}" ] ; then
-  MODULES_CHANGED="$( cd "${DIRECTORY_WITH_MAGISK_MODULE_UPDATES}" 2>/dev/null && ls  )"
-fi
-
-MODULES_TO_REMOVE="$( set +f ; ls -1 ${DIRECTORY_WITH_MAGISK_MODULES}/*/remove 2>/dev/null | cut -f5 -d"/" )"
-MODULES_TO_INSTALL="$( set +f ; ls -1d ${DIRECTORY_WITH_MAGISK_MODULE_UPDATES}/* 2>/dev/null | cut -f5 -d"/" )"
-
-MODULES_WITH_CHANGED_STATUS="$( echo "${CURRENT_MODULE_STATUS}" "${NEW_MODULE_STATUS}" | tr " " "\n" | sort | uniq -u | cut -f5 -d"/" )"
-MODULES_CHANGED="$( echo "${MODULES_TO_INSTALL}" "${MODULES_TO_REMOVE}" "${MODULES_CHANGED} ${MODULES_WITH_CHANGED_STATUS}" | tr " " "\n" | sort | uniq )"
 
 if [ "${MODULES_CHANGED}"x != ""x ] ; then
 
