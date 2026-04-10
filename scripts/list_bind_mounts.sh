@@ -36,9 +36,18 @@
 #   the script now ignores bind mount with source = target 
 #   the name of the temporary file used is now list_bind_mounts.sh.tmp
 #
+#  10.04.2026 v1.3.1 /bs
+#   added code to enable aliase when running in bash
+#
 
 __TRUE=0
 __FALSE=1
+
+# enable aliase if running in bash
+#
+if [ "${BASH_VERSION}"x != ""x ] ; then
+  shopt -s expand_aliases
+fi
 
 THISRC=${__TRUE}
 
