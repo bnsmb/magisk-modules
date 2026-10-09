@@ -42,7 +42,14 @@ A repository with the Magisk Module with **cmake version 3.30.4** and **ninja ve
 
 [https://github.com/bnsmb/Magisk-Module-with-cmake](https://github.com/bnsmb/Magisk-Module-with-cmake)
 
-(A Magisk Module with **cmake version 4.x** and **ninja version 1.13.0.git** can be found in this repository)
+(A Magisk Module with **cmake version 4.x** and **ninja version 1.13.x** can be found in this repository)
+
+---
+
+A repository with the Magisk Module with the **toolchain with gcc 16.x for Android on arm64 CPUs** is here:
+
+[https://github.com/bnsmb/Magisk-module-with-gcc-16.x](https://github.com/bnsmb/Magisk-module-with-gcc-16.x)
+
 
 ---
 
