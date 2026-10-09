@@ -2,7 +2,7 @@
 
 This repository contains most of my Magisk Modules.
 
-The binaries in the Magisk modules in this repository are for Android running on an **arm64** CPU.
+The binaries in the Magisk modules in this repository and in the other repositories mentioned this README  are for Android running on an **arm64** CPU
 
 ----
 
@@ -46,7 +46,7 @@ A repository with the Magisk Module with **cmake version 3.30.4** and **ninja ve
 
 ---
 
-A repository with the Magisk Module with the **toolchain with gcc 16.x for Android on arm64 CPUs** is here:
+A repository with the Magisk Module with the **toolchain with gcc 16.x for Android** is here:
 
 [https://github.com/bnsmb/Magisk-module-with-gcc-16.x](https://github.com/bnsmb/Magisk-module-with-gcc-16.x)
 
