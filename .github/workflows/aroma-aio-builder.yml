@@ -42,10 +42,15 @@ jobs:
   build-aio:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout repository (skip Magisk_Modules/archive)
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
+          sparse-checkout: |
+            /aroma-aio/
+            /.github/
+            /Magisk_Modules/*.zip
+          sparse-checkout-cone-mode: false
 
       - name: Setup Python
         uses: actions/setup-python@v5
