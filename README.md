@@ -81,6 +81,15 @@ A local copy of this page is available in this repository:  [Magisk_Modules.html
 
 
 ---
+
+## Interactive All-In-One (AIO) Installer (`AROMA-Next-Installer`)
+
+An optional multi-module All-In-One (AIO) installer builder is available in [`aroma-aio/`](aroma-aio/README.md) and via the **[Build AROMA-Next (ANI) AIO Installer](.github/workflows/aroma-aio-builder.yml)** GitHub Actions workflow (powered by [`Miustone/aroma-next-action@v1`](https://github.com/Miustone/aroma-next-action) with zero committed `ANI` binaries):
+
+- **Touch GUI in Custom Recovery** (`TWRP` / `OrangeFox` / `AERA`) & **Volume Key Selector** in the Magisk / KernelSU / APatch app — driven by a dynamically generated `aroma-config` from `Magisk_Modules/*.zip`.
+- Pick curated presets (`essentials`, `networking`, `dev`, `all-latest`) or any custom comma-separated module list, install every checked module cleanly in a single flash via its own `customize.sh`, and keep zero wrapper clutter behind.
+
+---
 ---
 
 

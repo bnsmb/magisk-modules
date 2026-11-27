@@ -1,0 +1,6 @@
+id=bnsmb_aio_installer
+name=bnsmb Magisk Modules AIO (ANI)
+version=v1.0.0
+versionCode=100
+author=bnsmb (AROMA-Next UI: Miustone)
+description=Temporary All-In-One installer wrapper for bnsmb's arm64 Magisk modules (automatically removed after installing your chosen modules).

@@ -1,0 +1,141 @@
+name: Build AROMA-Next (ANI) AIO Installer
+
+on:
+  workflow_dispatch:
+    inputs:
+      preset:
+        description: 'Module bundle preset to package'
+        required: true
+        default: 'essentials'
+        type: choice
+        options:
+          - essentials
+          - networking
+          - dev
+          - all-latest
+          - custom
+      custom_modules:
+        description: 'Comma-separated module IDs/names (used when preset=custom, e.g. bash,git,vim,btop,openssh)'
+        required: false
+        default: ''
+        type: string
+      aroma_version:
+        description: 'AROMA-Next-Installer (ANI) release tag (e.g. latest or V26.11-RC5)'
+        required: false
+        default: 'latest'
+        type: string
+  push:
+    branches: [ main, 'feat/aroma-next-aio-installer' ]
+    paths:
+      - 'aroma-aio/**'
+      - '.github/workflows/aroma-aio-builder.yml'
+      - 'Magisk_Modules/*.zip'
+  pull_request:
+    paths:
+      - 'aroma-aio/**'
+      - '.github/workflows/aroma-aio-builder.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  build-aio:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Stage AIO Multi-Module Directory & Generate aroma-config
+        id: stage
+        shell: bash
+        run: |
+          PRESET="${{ inputs.preset || 'essentials' }}"
+          INCLUDE="${{ inputs.custom_modules || '' }}"
+          echo "preset=${PRESET}" >> "$GITHUB_OUTPUT"
+          echo "zip_name=bnsmb-Magisk-Modules-AIO-${PRESET}-ANI.zip" >> "$GITHUB_OUTPUT"
+          python3 aroma-aio/build_aio.py \
+            --modules-dir Magisk_Modules \
+            --stage-dir build/aio-stage \
+            --preset "$PRESET" \
+            --include "$INCLUDE" \
+            --stage-only
+
+      - name: Package AIO Flashable ZIP with Miustone/aroma-next-action@v1
+        id: ani
+        uses: Miustone/aroma-next-action@v1
+        with:
+          source_dir: build/aio-stage
+          template: magisk
+          aroma_version: ${{ inputs.aroma_version || 'latest' }}
+          architectures: arm64
+          output_zip: dist/${{ steps.stage.outputs.zip_name }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Verify AIO ZIP integrity, permissions, LF endings, Edify & POSIX sh syntax
+        run: |
+          echo "Packaged with ANI release: ${{ steps.ani.outputs.aroma_release }} (${{ steps.ani.outputs.zip_size }} bytes)"
+          python3 - <<'PY'
+          import subprocess, tempfile, zipfile
+          from pathlib import Path
+
+          zip_path = Path("dist/${{ steps.stage.outputs.zip_name }}")
+          assert zip_path.is_file(), f"Missing ZIP: {zip_path}"
+          with zipfile.ZipFile(zip_path, "r") as zf:
+              names = set(zf.namelist())
+              required = {
+                  "module.prop",
+                  "customize.sh",
+                  "modules/catalog.tsv",
+                  "META-INF/com/google/android/update-binary",
+                  "META-INF/com/google/android/updater-script",
+                  "META-INF/com/google/android/magisk-installer",
+                  "META-INF/com/google/android/aroma-mod-lib.sh",
+                  "META-INF/com/google/android/aroma-config",
+                  "META-INF/com/google/android/aio-probe.sh",
+                  "META-INF/com/google/android/aio-summary.sh",
+                  "META-INF/com/google/android/bin/aroma_installer-arm64",
+                  "META-INF/com/google/android/aroma/themes/amoled/theme.prop",
+                  "META-INF/com/google/android/aroma/ttf/GoogleSans-Regular.ttf",
+              }
+              missing = required - names
+              assert not missing, f"Missing required entries: {missing}"
+              child_zips = [n for n in names if n.startswith("modules/") and n.endswith(".zip")]
+              assert len(child_zips) >= 1, "No bundled child module ZIPs found!"
+
+              cfg = zf.read("META-INF/com/google/android/aroma-config").decode("utf-8")
+              assert "\r" not in cfg, "aroma-config contains CR!"
+              assert len(cfg.encode("utf-8")) < 65536, "aroma-config exceeds 64KB C limit!"
+
+              with tempfile.TemporaryDirectory() as td:
+                  for info in zf.infolist():
+                      p = Path(info.filename)
+                      mode = (info.external_attr >> 16) & 0o777
+                      if p.name in ("update-binary", "magisk-installer", "aroma_installer-arm64") or p.suffix == ".sh":
+                          assert mode == 0o755, f"{info.filename} mode={oct(mode)}, expected 0o755"
+                      if p.suffix in (".sh", ".prop", ".edify") or p.name in ("aroma-config", "update-binary", "magisk-installer", "customize.sh"):
+                          data = zf.read(info.filename)
+                          assert b"\r" not in data, f"{info.filename} contains CR!"
+                          if p.suffix == ".sh" or p.name in ("update-binary", "magisk-installer"):
+                              out = Path(td) / info.filename
+                              out.parent.mkdir(parents=True, exist_ok=True)
+                              out.write_bytes(data)
+                              subprocess.run(["sh", "-n", str(out)], check=True)
+          print(f"[PASS] Verified {zip_path.name} ({len(names)} entries, {len(child_zips)} bundled modules, 0755 perms, LF & sh -n OK)")
+          PY
+          (cd dist && sha256sum "${{ steps.stage.outputs.zip_name }}" > SHA256SUMS.txt)
+          cat dist/SHA256SUMS.txt
+
+      - name: Upload AIO Flashable ZIP Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: bnsmb-aio-${{ steps.stage.outputs.preset }}-ani
+          path: |
+            dist/${{ steps.stage.outputs.zip_name }}
+            dist/SHA256SUMS.txt
