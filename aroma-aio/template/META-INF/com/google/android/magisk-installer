@@ -1,0 +1,79 @@
+#!/sbin/sh
+# bnsmb Magisk Modules AIO — AROMA-Next Magisk / KernelSU / APatch Installer Bridge
+
+OUTFD="$2"
+ZIPFILE="$3"
+
+ui_print() {
+  if [ -n "$OUTFD" ] && [ -e "/proc/self/fd/$OUTFD" ]; then
+    echo "ui_print $1" > "/proc/self/fd/$OUTFD" 2>/dev/null
+    echo "ui_print" > "/proc/self/fd/$OUTFD" 2>/dev/null
+    return
+  fi
+  echo "$1"
+}
+
+case "$BOOTMODE" in
+  true|1)  BOOTMODE=true ;;
+  false|0) BOOTMODE=false ;;
+  *)
+    if (ps -A 2>/dev/null || ps 2>/dev/null) | grep -qE "zygote|surfaceflinger"; then
+      BOOTMODE=true
+    else
+      BOOTMODE=false
+    fi
+    ;;
+esac
+export BOOTMODE OUTFD ZIPFILE
+
+if [ "$BOOTMODE" != "true" ]; then
+  if ! grep -q " /data " /proc/mounts 2>/dev/null; then
+    mount /data >/dev/null 2>&1 || true
+  fi
+fi
+
+# Run our AIO customize.sh directly so it can install every chosen child module cleanly
+# without leaving a dummy wrapper module behind in /data/adb/modules!
+WORK="/tmp/bnsmb-aio-work"
+rm -rf "$WORK"
+mkdir -p "$WORK"
+unzip -o "$ZIPFILE" "module.prop" "customize.sh" -d "$WORK" >/dev/null 2>&1 || {
+  ui_print "! Failed to unpack archive $ZIPFILE"
+  exit 1
+}
+
+export TMPDIR="$WORK"
+export MODPATH="$WORK/wrapper_mod"
+mkdir -p "$MODPATH"
+
+abort() {
+  ui_print "! $1"
+  rm -rf "$WORK" 2>/dev/null || true
+  exit 1
+}
+
+set_perm() {
+  chown "$2:$3" "$1" 2>/dev/null || true
+  chmod "$4" "$1" 2>/dev/null || true
+  [ -n "$5" ] && chcon "$5" "$1" 2>/dev/null || true
+}
+
+set_perm_recursive() {
+  find "$1" -type d 2>/dev/null | while IFS= read -r d; do
+    chown "$2:$3" "$d" 2>/dev/null || true
+    chmod "$4" "$d" 2>/dev/null || true
+    [ -n "$6" ] && chcon "$6" "$d" 2>/dev/null || true
+  done
+  find "$1" -type f 2>/dev/null | while IFS= read -r f; do
+    chown "$2:$3" "$f" 2>/dev/null || true
+    chmod "$5" "$f" 2>/dev/null || true
+    [ -n "$6" ] && chcon "$6" "$f" 2>/dev/null || true
+  done
+}
+
+if [ -f "$WORK/customize.sh" ]; then
+  . "$WORK/customize.sh"
+fi
+
+rm -rf "$WORK" 2>/dev/null || true
+exit 0
